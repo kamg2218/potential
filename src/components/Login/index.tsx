@@ -21,11 +21,11 @@ const Login = () => {
     // 새로운 토큰이 필요한 경우
     // 검증 후, storage 저장 및 밸런스 게임으로 이동
     setLocalStorage("popopo");
-    navigate("/balance");
+    navigate("/game");
   };
 
   return (
-    <div className="w-full h-screen flex flex-col justify-center items-center gap-">
+    <div className="w-full h-screen flex flex-col justify-center items-center gap-4">
       <div className="w-full text-center text-slate-400 text-9xl">MBTI</div>
       <StyledButton onClick={handleClick}>
         시작하기

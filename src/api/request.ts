@@ -1,8 +1,7 @@
 import request from ".";
 
 //사용 예제 - get
-export const getInfo = (param: any) =>
-  request({ url: `/info/${param.target}` });
+export const getInfo = (param: any) => request({ url: "/info", data: param });
 
 //사용 예제 - post
 export const saveInfo = (param: any) =>

@@ -5,6 +5,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import routes from "./routes";
 
 import { Reset } from "styled-reset";
+import './index.css'
 
 const router = createBrowserRouter(routes);
 

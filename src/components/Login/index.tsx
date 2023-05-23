@@ -1,4 +1,4 @@
-import { getLocalStorage } from "../../utils/utils";
+import { getLocalStorage } from "../../utils/storage";
 
 const Login = () => {
   const store = getLocalStorage();

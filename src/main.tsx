@@ -5,13 +5,17 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import routes from "./routes";
 
 import { Reset } from "styled-reset";
-import './index.css'
+
+import "./index.css";
+
+import GlobalStyle from "./style/GlobalStyle";
 
 const router = createBrowserRouter(routes);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <Reset />
+    <GlobalStyle />
     <RouterProvider router={router} />
   </React.StrictMode>
 );

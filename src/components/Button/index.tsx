@@ -9,7 +9,6 @@ const Button = styled.button.attrs<ButtonProps>((props) => {
     type: props.type ?? "button",
   };
 })`
-  border: 1px solid grey;
   color: #000;
   background: #fff;
 `;

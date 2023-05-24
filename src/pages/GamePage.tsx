@@ -1,6 +1,3 @@
-import React from "react";
-import Game from "../components/Game";
-
-export default function GamePage() {
-  return <Game />;
+export default function MainPage() {
+  return null;
 }

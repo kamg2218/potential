@@ -1,9 +1,10 @@
 import Layout from "../components/Layout";
 import LoginPage from "../pages/LoginPage";
 import CardPage from "../pages/CardPage";
-import { Navigate } from "react-router-dom";
 import MainPage from "../pages/MainPage";
-import RollingPaper from "../pages/RollingPaper";
+import PaperPage from "../pages/PaperPage";
+
+import { Navigate } from "react-router-dom";
 
 const routes = [
   {
@@ -12,7 +13,7 @@ const routes = [
       { path: "/login", element: <LoginPage /> },
       { path: "/main", element: <MainPage /> },
       { path: "/card", element: <CardPage /> },
-      { path: "/rollingPaper", element: <RollingPaper /> },
+      { path: "/paper", element: <PaperPage /> },
       { path: "*", element: <Navigate to="/login" /> },
     ],
   },

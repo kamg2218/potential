@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 export default function Oauth() {
   const navigate = useNavigate();
   const code = new URL(window.location.href).searchParams.get("code");

@@ -1,8 +1,13 @@
-import Card from '../components/Card';
+import { Outlet } from "react-router-dom";
+
+import PreviousButton from "../components/Common/Button/PreviousButton";
 
 const CardPage = () => {
   return (
-    <Card />
+    <div>
+      <PreviousButton className='ml-6 mt-5' />
+      <Outlet />
+    </div>
   );
 };
 

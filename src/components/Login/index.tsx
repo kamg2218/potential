@@ -1,7 +1,6 @@
-import styled from "styled-components";
-
 import SocialKakao from "./SocialKakao";
 
+import styled from "styled-components";
 
 const Login = () => {
   return (

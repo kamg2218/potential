@@ -14,7 +14,7 @@ export default function Oauth() {
         navigate("/main");
       } catch (e) {
         console.error(e);
-        navigate("/main");
+        navigate("/login");
       }
     })();
   }, []);

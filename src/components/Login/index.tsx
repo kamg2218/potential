@@ -1,33 +1,11 @@
-import { useNavigate } from "react-router-dom";
-
-import { getLocalStorage, setLocalStorage } from "../../utils/storage";
 import Button from "../Button";
 
 import styled from "styled-components";
 
-import axios from "axios";
 import SocialKakao from "./SocialKakao";
 
 
 const Login = () => {
-  const navigate = useNavigate();
-
-  const store = getLocalStorage();
-
-  const handleClick = () => {
-    if (store) {
-      // TODO : api 연결 - 저장된 토큰 검증
-      navigate("/card");
-      return;
-    }
-
-    // TODO : api 연결
-    // 새로운 토큰이 필요한 경우
-    // 검증 후, storage 저장 및 밸런스 게임으로 이동
-    setLocalStorage("popopo");
-    navigate("/balance");
-  };
-
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center gap-">
       <Wrapper>

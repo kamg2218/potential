@@ -1,11 +1,15 @@
+import { Navigate } from "react-router";
+
 import Layout from "../components/Layout";
+import Oauth from "../components/Login/Oauth";
+import MyCard from "../components/MyCardPage/MyCard";
+import Belief from "../components/Belief/Belief";
+
 import LoginPage from "../pages/LoginPage";
 import CardPage from "../pages/CardPage";
 import MainPage from "../pages/MainPage";
 import PaperPage from "../pages/PaperPage";
-import Oauth from "../components/Login/Oauth";
 import CompletePage from "../pages/CompletePage";
-import { Navigate } from "react-router-dom";
 
 const routes = [
   {
@@ -13,7 +17,24 @@ const routes = [
     children: [
       { path: "/login", element: <LoginPage /> },
       { path: "/main", element: <MainPage /> },
-      { path: "/card", element: <CardPage /> },
+      {
+        path: '/card',
+        element: <CardPage />,
+        children: [
+          {
+            index: true,
+            element: <Navigate to='/card/mbti' />
+          },
+          {
+            path: 'mbti',
+            element: <MyCard />,
+          },
+          {
+            path: 'belief',
+            element: <Belief />,
+          }
+        ],
+      },
       { path: "/paper", element: <PaperPage /> },
       { path: "/complete", element: <CompletePage /> },
       { path: "/auth", element: <Oauth /> },

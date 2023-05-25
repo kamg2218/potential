@@ -1,4 +1,4 @@
-import Button from "../Button";
+import Button from ".";
 
 import { ArrowRightIcon } from '@heroicons/react/outline';
 import styled from "styled-components";

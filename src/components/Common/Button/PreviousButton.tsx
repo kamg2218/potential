@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-import Button from '../Button';
+import Button from '.';
 
 import { ArrowSmLeftIcon } from '@heroicons/react/outline';
 import styled from 'styled-components';

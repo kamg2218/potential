@@ -2,23 +2,30 @@ import Button from "../../Button";
 
 import styled from "styled-components";
 
-const Accuracy = () => {
+const CONTENTS = [
+  { value: 'almost', label: '거의 맞아요' },
+  { value: 'normal', label: '보통이에요' },
+  { value: 'different', label: '많이 달라요' },
+]
+
+const Accuracy = ({ accuracy, handleAccuracy }: { accuracy: string, handleAccuracy: (num: string) => void }) => {
   return (
-    <div className="grid justify-items-center">
-      <div className="text-zinc-400 mb-4">얼마나 비슷한가요</div>
-      <div className="flex flex-col gap-5">
-        <StyledButton $clicked={false}>거의 맞아요</StyledButton>
-        <StyledButton $clicked={false}>보통이에요</StyledButton>
-        <StyledButton $clicked={true}>많이 달라요</StyledButton>
-      </div>
+    <div className="flex flex-col gap-5 mt-5">
+      {
+        CONTENTS.map(({ value, label }) => {
+          return (
+            <StyledButton $clicked={accuracy === label} key={value} onClick={() => handleAccuracy(label)}>{label}</StyledButton>
+          )
+        })
+      }
     </div>
   );
 };
 
 const StyledButton = styled(Button) < { $clicked: boolean }> `
-  padding: 0.8rem 2rem;
+  padding: 0.6rem 1.8rem;
   border-radius: 8px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   box-shadow: 1px 1px gray;
 

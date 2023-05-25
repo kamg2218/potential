@@ -4,6 +4,7 @@ import { getLocalStorage, setLocalStorage } from "../../utils/storage";
 import Button from "../Button";
 
 import styled from 'styled-components'
+import SocialKakao from "./SocialKakao";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ const Login = () => {
       <StyledButton onClick={handleClick}>
         시작하기
       </StyledButton>
+      <SocialKakao />
     </div >
   );
 };

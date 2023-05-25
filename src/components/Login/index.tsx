@@ -1,5 +1,3 @@
-import Button from "../Button";
-
 import styled from "styled-components";
 
 import SocialKakao from "./SocialKakao";
@@ -26,20 +24,6 @@ const Wrapper = styled.div`
   margin-bottom: 15rem;
   h1 {
     margin-bottom: 4rem;
-  }
-`;
-const StyledButton = styled(Button)`
-  width: 60%;
-  height: fit-content;
-  border: 1px solid lightgrey;
-  border-radius: 8px;
-  padding: 1rem 2rem;
-
-  color: grey;
-
-  :hover {
-    color: black;
-    border: 1px solid black;
   }
 `;
 

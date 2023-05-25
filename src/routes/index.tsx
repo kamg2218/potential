@@ -18,7 +18,7 @@ const routes = [
       { path: "/login", element: <LoginPage /> },
       { path: "/main", element: <MainPage /> },
       {
-        path: '/card',
+        path: "/card",
         element: <CardPage />,
         children: [
           {
@@ -26,11 +26,11 @@ const routes = [
             element: <Navigate to='/card/mbti' />
           },
           {
-            path: 'mbti',
+            path: "mbti",
             element: <MyCard />,
           },
           {
-            path: 'belief',
+            path: "belief",
             element: <Belief />,
           }
         ],

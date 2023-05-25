@@ -26,19 +26,5 @@ const Wrapper = styled.div`
     margin-bottom: 4rem;
   }
 `;
-const StyledButton = styled(Button)`
-  width: 60%;
-  height: fit-content;
-  border: 1px solid lightgrey;
-  border-radius: 8px;
-  padding: 1rem 2rem;
-
-  color: grey;
-
-  :hover {
-    color: black;
-    border: 1px solid black;
-  }
-`;
 
 export default Login;

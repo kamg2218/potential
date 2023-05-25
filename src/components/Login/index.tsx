@@ -1,5 +1,4 @@
 import SocialKakao from "./SocialKakao";
-
 import styled from "styled-components";
 
 const Login = () => {

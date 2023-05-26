@@ -5,9 +5,12 @@ import { Outlet } from "react-router-dom";
 
 const Layout = () => {
   return (
-    <div className='h-screen w-screen flex justify-start lg:justify-center'>
+    <div className="h-screen w-screen flex justify-start lg:justify-center">
       <div className="w-0 sm:w-20 lg:w-0"></div>
-      <div className="block max-w-2xl w-full h-full" style={{ backgroundColor: 'rgb(32, 33, 36)' }}>
+      <div
+        className="block max-w-2xl w-full h-full"
+        style={{ backgroundColor: "rgb(32, 33, 36)" }}
+      >
         {/* <Header /> */}
         <main>
           <Outlet />

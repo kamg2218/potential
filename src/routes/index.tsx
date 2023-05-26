@@ -12,7 +12,11 @@ import CardPage from "../pages/CardPage";
 import MainPage from "../pages/MainPage";
 import PaperPage from "../pages/PaperPage";
 import CompletePage from "../pages/CompletePage";
+
 import PocketPage from "../pages/PocketPage";
+
+import MessagePage from "../pages/MessagePage";
+import HistoryPage from "../pages/HistoryPage";
 
 const routes = [
   {
@@ -39,7 +43,7 @@ const routes = [
         children: [
           {
             index: true,
-            element: <Navigate to='/card/mbti' />
+            element: <Navigate to="/card/mbti" />,
           },
           {
             path: "mbti",
@@ -48,13 +52,15 @@ const routes = [
           {
             path: "belief",
             element: <Belief />,
-          }
+          },
         ],
       },
       { path: "/paper", element: <PaperPage /> },
       { path: "/pocket", element: <PocketPage /> },
       { path: "/complete", element: <CompletePage /> },
       { path: "/auth", element: <Oauth /> },
+      { path: "/history", element: <HistoryPage /> },
+      { path: "/message", element: <MessagePage /> },
       { path: "*", element: <Navigate to="/login" /> },
     ],
   },

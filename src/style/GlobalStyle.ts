@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
 
     html {
         font-size: 62.5%;
+        color : #fff
     }
 
     body {
@@ -21,9 +22,8 @@ const GlobalStyle = createGlobalStyle`
     }
 
     a {
-    
-    }
 
+    }
     input, textarea, select, button {
         font-size: 1em;
     }

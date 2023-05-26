@@ -1,5 +1,12 @@
 import request from '.';
 
+// 로그인
+export const postLogin = ({ token }: { token: string }) =>
+  request({
+    headers: { Authorization: `Bearer ${token}` },
+    url: '/kakao/login',
+  });
+
 // 사용자 정보
 export const getUser = ({
   token,
@@ -10,7 +17,11 @@ export const getUser = ({
   id: number;
   data: any;
 }) =>
-  request({ headers: { Authorization: token }, url: `/users/${id}`, ...data });
+  request({
+    headers: { Authorization: `Bearer ${token}` },
+    url: `/users/${id}`,
+    ...data,
+  });
 
 // 사용자 등록
 export const postUser = ({
@@ -23,7 +34,7 @@ export const postUser = ({
   data: any;
 }) =>
   request({
-    headers: { Authorization: token },
+    headers: { Authorization: `Bearer ${token}` },
     method: 'post',
     url: `/users/${id}`,
     data: { ...data },
@@ -31,13 +42,17 @@ export const postUser = ({
 
 // 받은 질문들
 export const getQuestions = ({ token, data }: { token: string; data: any }) => {
-  request({ headers: { Authorization: token }, url: '/questions', ...data });
+  request({
+    headers: { Authorization: `Bearer ${token}` },
+    url: '/questions',
+    ...data,
+  });
 };
 
 // 질문하기
 export const postQuestions = ({ token, data }: { token: string; data: any }) =>
   request({
-    headers: { Authorization: token },
+    headers: { Authorization: `Bearer ${token}` },
     method: 'post',
     url: '/questions',
     data: { ...data },

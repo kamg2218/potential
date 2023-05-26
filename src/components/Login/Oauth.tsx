@@ -16,12 +16,12 @@ export default function Oauth() {
         // const res = await axios.get(`${LOCAL_URL}/api/code=${code}`);
 
         // deploy
-        const res = await axios.get(`api/code=${code}`);
+        const res = await axios.get(`api?code=${code}`);
         const token = res.headers.authorization;
         console.log(res);
-        window.localStorage.setItem("token", token);
+        window.localStorage.setItem("token", JSON.stringify(res));
 
-        const user = await getUser({ token, id: 1, data: code });
+        const user = await getUser({ token, id: 11, data: code });
         console.log(user);
         if (user.data && !user.data.user) {
           navigate('/card');

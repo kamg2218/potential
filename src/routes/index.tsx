@@ -12,12 +12,11 @@ import CardPage from "../pages/CardPage";
 import MainPage from "../pages/MainPage";
 import PaperPage from "../pages/PaperPage";
 import CompletePage from "../pages/CompletePage";
-<<<<<<< HEAD
+
 import PocketPage from "../pages/PocketPage";
-=======
+
 import MessagePage from "../pages/MessagePage";
 import HistoryPage from "../pages/HistoryPage";
->>>>>>> 3095ae1 (page add)
 
 const routes = [
   {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import styled from "styled-components";
 
@@ -14,19 +14,13 @@ const Main = () => {
   const handleText = (value: string) => {
     setText(value);
   };
-<<<<<<< HEAD
 
   const navigate = useNavigate();
   const handleClick = () => {
     setLocalStorage({ mbti, belief, msg: text });
-    navigate('/main/card');
-  }
+    navigate("/main/card");
+  };
 
-=======
-  useEffect(() => {
-    console.log(text);
-  }, [text]);
->>>>>>> 3095ae1 (page add)
   return (
     <Container className="w-full h-screen">
       <MbtiBox>
@@ -35,7 +29,8 @@ const Main = () => {
       </MbtiBox>
       <Content>
         <h1>
-          다른 <strong>MBTI는 </strong><div />
+          다른 <strong>MBTI는 </strong>
+          <div />
           <strong>어떤 생각</strong>을 할까?
         </h1>
         <p>궁금한 점을 쪽지로 보내보세요.</p>
@@ -47,7 +42,7 @@ const Main = () => {
           />
         </Wrapper>
       </Content>
-      <NextButton text='질문하기' className='my-8' onClick={handleClick} />
+      <NextButton text="질문하기" className="my-8" onClick={handleClick} />
     </Container>
   );
 };

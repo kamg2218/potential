@@ -6,18 +6,23 @@ import NextButton from '../Common/Button/NextButton';
 import PreviousButton from '../Common/Button/PreviousButton';
 
 import styled from 'styled-components';
+import { getLocalStorage, setLocalStorage } from '../../utils/storage';
 
-const Belief = ({ mbti = 'ENFP' }: { mbti?: string }) => {
+const Belief = () => {
   const navigate = useNavigate();
+  const { mbti, belief } = getLocalStorage();
 
   const handleClick = () => {
+
+
+    setLocalStorage({ mbti, belief: String(accuracy) });
     navigate('/main');
   }
   const handlePreviousClick = () => {
     navigate('/card/mbti');
   }
 
-  const [accuracy, setAccuracy] = useState(1);
+  const [accuracy, setAccuracy] = useState(Number(belief) || 1);
   const handleAccuracy = (num: number) => {
     setAccuracy(num);
   }
@@ -30,7 +35,7 @@ const Belief = ({ mbti = 'ENFP' }: { mbti?: string }) => {
         <div className='text-4xl text-white'>얼마나 비슷한가요?</div>
         <StyledText>{mbti}</StyledText>
         <Accuracy accuracy={accuracy} handleAccuracy={handleAccuracy} />
-        <NextButton text='질문하기' className='my-8' onClick={handleClick} />
+        <NextButton text='다음으로' className='my-8' onClick={handleClick} />
       </div>
     </>
   );

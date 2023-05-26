@@ -3,22 +3,34 @@ import { ChangeEvent, useState } from "react";
 import styled from "styled-components";
 
 import TextField from "./TextField";
+import NextButton from "../Common/Button/NextButton";
+import { useNavigate } from "react-router-dom";
+import { getLocalStorage, setLocalStorage } from "../../utils/storage";
 
 const Main = () => {
+  const { mbti, belief } = getLocalStorage();
+
   const [text, setText] = useState("");
   const handleText = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setText(value);
   };
+
+  const navigate = useNavigate();
+  const handleClick = () => {
+    setLocalStorage({ mbti, belief, msg: text });
+    navigate('/main/card');
+  }
+
   return (
     <Container className="w-full h-screen">
       <MbtiBox>
         <StyledSpan>·</StyledSpan>
-        <span> INTP</span>
+        <span>{mbti}</span>
       </MbtiBox>
       <Content>
         <h1>
-          다른 <strong>MBTI는</strong>
+          다른 <strong>MBTI는 </strong><div />
           <strong>어떤 생각</strong>을 할까?
         </h1>
         <p>궁금한 점을 쪽지로 보내보세요.</p>
@@ -30,6 +42,7 @@ const Main = () => {
           />
         </Wrapper>
       </Content>
+      <NextButton text='질문하기' className='my-8' onClick={handleClick} />
     </Container>
   );
 };

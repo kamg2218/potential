@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUser } from "../../api/request";
 
-const LOCAL_URL = 'https://911b-175-192-26-222.ngrok-free.app';
+// const LOCAL_URL = 'https://911b-175-192-26-222.ngrok-free.app';
 
 export default function Oauth() {
   const navigate = useNavigate();

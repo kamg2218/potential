@@ -1,3 +1,5 @@
+const KEY = 'potential';
+
 const initial = {
   id: '',
   name: '',
@@ -8,7 +10,7 @@ const initial = {
 };
 
 export const getLocalStorage = () => {
-  const storage = window.localStorage.getItem('potential');
+  const storage = window.localStorage.getItem(KEY);
 
   if (!storage) return initial;
 
@@ -25,7 +27,7 @@ export const setLocalStorage = (value: {
 }) => {
   const { token, user } = getLocalStorage();
   window.localStorage.setItem(
-    'potential',
+    KEY,
     JSON.stringify({
       token,
       user: { ...user, ...value },
@@ -40,5 +42,13 @@ export const setTokenStorage = ({
   token: string;
   user: { id: string; name: string };
 }) => {
-  window.localStorage.setItem('potential', JSON.stringify({ token, user }));
+  window.localStorage.setItem(KEY, JSON.stringify({ token, user }));
+};
+
+export const getTokenStorage = () => {
+  const storage = window.localStorage.getItem(KEY);
+  if (!storage) return { token: '', user: {} };
+
+  const { token, user } = JSON.parse(storage);
+  return { token, user };
 };

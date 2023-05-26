@@ -51,7 +51,6 @@ const MbtiBox = styled.div`
   color: black;
   display: flex;
   flex-direction: row;
-  //justify-content: center;
   align-items: center;
 
   top: 22px;
@@ -98,19 +97,21 @@ const Content = styled.div`
     margin-bottom: 3rem;
   }
 `;
+
 const Container = styled.div`
   color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
+  margin-top: 10rem;
 `;
 
 const Wrapper = styled.div`
   color: black;
   width: 100%;
   //height: 4.5rem;
-  padding-inline: 1.3rem;
+  padding-inline: 3rem;
   display: flex;
   align-items: center;
   flex-direction: row;

@@ -2,7 +2,7 @@ import { Navigate } from "react-router";
 
 import Layout from "../components/Layout";
 import Oauth from "../components/Login/Oauth";
-import MyCard from "../components/MyCardPage/MyCard";
+import MyCard from "../components/MyCard/MyCard";
 import Belief from "../components/Belief/Belief";
 
 import LoginPage from "../pages/LoginPage";
@@ -16,7 +16,13 @@ const routes = [
     element: <Layout />,
     children: [
       { path: "/login", element: <LoginPage /> },
-      { path: "/main", element: <MainPage /> },
+      {
+        path: "/main",
+        element: <MainPage />,
+        children: [
+
+        ],
+      },
       {
         path: "/card",
         element: <CardPage />,

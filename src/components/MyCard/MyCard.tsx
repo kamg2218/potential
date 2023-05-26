@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 
 import Card from '../Common/Card';
 import NextButton from '../Common/Button/NextButton';
+import PreviousButton from '../Common/Button/PreviousButton';
 
 const MBTI_LIST = ['E', 'I', 'N', 'S', 'F', 'T', 'P', 'J'];
 
@@ -11,6 +12,9 @@ const MyCard = () => {
 
   const handleClick = () => {
     navigate('/card/belief');
+  }
+  const handlePreviousClick = () => {
+    navigate('/login');
   }
 
   const [mbti, setMbti] = useState(['E', 'S', 'F', 'J']);
@@ -25,12 +29,15 @@ const MyCard = () => {
   }
 
   return (
-    <div className='grid text-center justify-center gap-4 mt-6'>
-      <div className='text-5xl text-white'>나의 MBTI는?</div>
-      <div style={{ color: '#7B7B7B' }}>자신의 MBTI를 선택해 주세요</div>
-      <Card mbti={mbti} handleMbti={handleMbti} />
-      <NextButton text='질문하기' className='my-5' onClick={handleClick} />
-    </div>
+    <>
+      <PreviousButton className='ml-6 mt-5' onClick={handlePreviousClick} />
+      <div className='grid text-center justify-center gap-4 mt-6'>
+        <div className='text-5xl text-white'>나의 MBTI는?</div>
+        <div style={{ color: '#7B7B7B' }}>자신의 MBTI를 선택해 주세요</div>
+        <Card mbti={mbti} handleMbti={handleMbti} />
+        <NextButton text='질문하기' className='my-5' onClick={handleClick} />
+      </div>
+    </>
   );
 };
 

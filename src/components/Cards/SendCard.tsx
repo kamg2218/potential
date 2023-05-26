@@ -4,14 +4,21 @@ import { useNavigate } from 'react-router';
 import Card from '../Common/Card';
 import NextButton from '../Common/Button/NextButton';
 import PreviousButton from '../Common/Button/PreviousButton';
+import { getLocalStorage } from '../../utils/storage';
+import { postQuestions } from '../../api/request';
 
 const MBTI_LIST = ['E', 'I', 'N', 'S', 'F', 'T', 'P', 'J'];
+const { token } = getLocalStorage();
 
 const SendCard = () => {
   const navigate = useNavigate();
 
+  const { msg } = getLocalStorage();
+
   const handleClick = () => {
-    navigate('/complete');
+    postQuestions({ token, data: { mbti: mbti.join(''), title: msg } })
+      .then(() => navigate('/complete'))
+      .catch((err) => { throw new Error('Fail To Send Message.', err) });
   }
   const handlePreviousClick = () => {
     navigate('/main');

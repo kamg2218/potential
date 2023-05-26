@@ -6,7 +6,7 @@ import Button from '.';
 import { ArrowSmLeftIcon } from '@heroicons/react/outline';
 import styled from 'styled-components';
 
-const PreviousButton = ({ className, onClick }: { className?: string, onClick?: React.MouseEventHandler<HTMLButtonElement> }) => {
+const PreviousButton = ({ className, onClick }: { className?: string, onClick?: (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void }) => {
   const navigate = useNavigate();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

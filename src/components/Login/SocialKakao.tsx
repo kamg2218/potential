@@ -7,7 +7,6 @@ const SocialKakao = () => {
   // const redirect_uri = "http://localhost:5173/auth"; //Redirect URI
   const redirect_uri = "https://potential.vercel.app/auth"; //Redirect URI
 
-
   // oauth 요청 URL
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
   const handleLogin = () => {

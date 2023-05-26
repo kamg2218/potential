@@ -1,4 +1,10 @@
+import Paper from "../components/Paper/Paper";
+
 const PaperPage = () => {
-  return <div>RollingPaper</div>;
+  return (
+    <>
+      <Paper />
+    </>
+  );
 };
 export default PaperPage;

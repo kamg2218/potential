@@ -43,7 +43,7 @@ const Belief = () => {
 
 const StyledText = styled.div`
   color: white;
-  font-size: 60px;
+  font-size: 7rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
 `;

@@ -13,9 +13,9 @@ import GlobalStyle from "./style/GlobalStyle";
 const router = createBrowserRouter(routes);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
+  <>
     <Reset />
     <GlobalStyle />
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </>
 );

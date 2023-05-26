@@ -1,12 +1,13 @@
+const initial = {
+  id: '',
+  name: '',
+  mbti: '',
+  belief: '0',
+  msg: '',
+  to: '',
+};
+
 export const getLocalStorage = () => {
-  const initial = {
-    id: '',
-    name: '',
-    mbti: '',
-    belief: '0',
-    msg: '',
-    to: '',
-  };
   const storage = window.localStorage.getItem('potential');
 
   if (!storage) return initial;
@@ -30,4 +31,14 @@ export const setLocalStorage = (value: {
       user: { ...user, ...value },
     })
   );
+};
+
+export const setTokenStorage = ({
+  token,
+  user,
+}: {
+  token: string;
+  user: { id: string; name: string };
+}) => {
+  window.localStorage.setItem('potential', JSON.stringify({ token, user }));
 };

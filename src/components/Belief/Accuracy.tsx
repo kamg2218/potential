@@ -14,7 +14,7 @@ const Accuracy = ({ accuracy, handleAccuracy }: { accuracy: number, handleAccura
       {
         CONTENTS.map(({ value, label }) => {
           return (
-            <StyledButton $clicked={accuracy === value} key={value} onClick={() => handleAccuracy(value)}>
+            <StyledButton key={value} $clicked={accuracy === value} key={value} onClick={() => handleAccuracy(value)}>
               {label}
             </StyledButton>
           )
@@ -28,17 +28,23 @@ const StyledAccuracy = styled.div`
   display: flex;
   flex-direction: column;
   border: 1px solid black;
-  border-radius: 12px;
+  border-radius: 8px;
+  margin-bottom: 1rem;
 `;
 
 const StyledButton = styled(Button) < { $clicked: boolean }> `
-  padding: 1.2rem 7rem;
-  font-size: 1rem;
+  padding: 2rem 8rem;
+  font-size: 1.6rem;
 
   border-bottom: 1px solid black;
+  &:first-child {
+    border-radius: 8px 8px 0 0;
+  }
   &:last-child {
     border-bottom: none;
+    border-radius: 0 0 8px 8px;
   }
+
   color: ${({ $clicked }) => $clicked ? "#202124" : "grey"};
   background-color: ${({ $clicked }) => $clicked ? "#FFCD29" : "whitesmoke"};
 

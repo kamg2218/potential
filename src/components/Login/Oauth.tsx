@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { postLogin } from "../../api/request";
 import { getLocalStorage, setTokenStorage } from "../../utils/storage";
 
-const REST_API_KEY = "cddf66394b31736dadc6c286c6eb6e5d"; //REST API KEY
-const CLIENT_SECRET = "PuisJ5MfexduI7mhyoukwIROhTI7gxbD";
-const REDIRECT_URI = "http://localhost:5173/auth"; //Redirect URI
+// const REST_API_KEY = "cddf66394b31736dadc6c286c6eb6e5d"; //REST API KEY
+// const CLIENT_SECRET = "PuisJ5MfexduI7mhyoukwIROhTI7gxbD";
+// const REDIRECT_URI = "http://localhost:5173/auth"; //Redirect URI
 
-// const REST_API_KEY = "84e3b52ab109360d6443565c365472dc"; //REST API KEY
-// const CLICNET_SECRET = "NuDkF7r2uuLdxkQkpNE3jPJ7uR2sSb5W"
-// const REDIRECT_URI = "https://potential.vercel.app/auth"; //Redirect URI
+const REST_API_KEY = "84e3b52ab109360d6443565c365472dc"; //REST API KEY
+const CLIENT_SECRET = "NuDkF7r2uuLdxkQkpNE3jPJ7uR2sSb5W"
+const REDIRECT_URI = "https://potential.vercel.app/auth"; //Redirect URI
 
 const url = 'https://kauth.kakao.com/oauth/token';
 

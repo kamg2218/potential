@@ -14,7 +14,7 @@ const Accuracy = ({ accuracy, handleAccuracy }: { accuracy: number, handleAccura
       {
         CONTENTS.map(({ value, label }) => {
           return (
-            <StyledButton key={value} $clicked={accuracy === value} key={value} onClick={() => handleAccuracy(value)}>
+            <StyledButton key={value} $clicked={accuracy === value} onClick={() => handleAccuracy(value)}>
               {label}
             </StyledButton>
           )

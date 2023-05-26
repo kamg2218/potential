@@ -12,14 +12,16 @@ const SocialKakao = () => {
   const handleLogin = () => {
     window.location.href = kakaoURL;
   };
-  return <KakaoButton onClick={handleLogin} />;
+  return <KakaoButton onClick={handleLogin}>카카오톡 로그인</KakaoButton>;
 };
 
 const KakaoButton = styled.button`
-  background-image: url(https://k.kakaocdn.net/14/dn/btroDszwNrM/I6efHub1SN5KCJqLm1Ovx1/o.jpg);
-  background-repeat: no-repeat;
+  color: #000000;
+  border-radius: 1rem;
+  background-color: #ffcd29;
   cursor: pointer;
-  width: 180px;
-  height: 45px;
+  width: 243px;
+  height: 44px;
+  font-size: 2rem;
 `;
 export default SocialKakao;

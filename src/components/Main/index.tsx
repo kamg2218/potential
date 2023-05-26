@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 
 import styled from "styled-components";
 
@@ -11,16 +11,15 @@ const Main = () => {
   const { mbti, belief } = getLocalStorage();
 
   const [text, setText] = useState("");
-  const handleText = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
+  const handleText = (value: string) => {
     setText(value);
   };
 
   const navigate = useNavigate();
   const handleClick = () => {
     setLocalStorage({ mbti, belief, msg: text });
-    navigate('/main/card');
-  }
+    navigate("/main/card");
+  };
 
   return (
     <Container className="w-full h-screen">
@@ -30,7 +29,8 @@ const Main = () => {
       </MbtiBox>
       <Content>
         <h1>
-          다른 <strong>MBTI는 </strong><div />
+          다른 <strong>MBTI는 </strong>
+          <div />
           <strong>어떤 생각</strong>을 할까?
         </h1>
         <p>궁금한 점을 쪽지로 보내보세요.</p>
@@ -42,12 +42,13 @@ const Main = () => {
           />
         </Wrapper>
       </Content>
-      <NextButton text='질문하기' className='my-8' onClick={handleClick} />
+      <NextButton text="질문하기" className="my-8" onClick={handleClick} />
     </Container>
   );
 };
 
 const MbtiBox = styled.div`
+  color: black;
   display: flex;
   flex-direction: row;
   //justify-content: center;
@@ -98,6 +99,7 @@ const Content = styled.div`
   }
 `;
 const Container = styled.div`
+  color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -105,20 +107,21 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
+  color: black;
   width: 100%;
-  height: 4.5rem;
+  //height: 4.5rem;
   padding-inline: 1.3rem;
   display: flex;
   align-items: center;
   flex-direction: row;
-  input {
+
+  textarea {
     background-color: #e1e1e1;
-    height: 100%;
     width: 100%;
     border-radius: 0.7rem;
-
+    resize: none;
+    padding: 10px;
     ::placeholder {
-      text-align: center;
     }
   }
 `;

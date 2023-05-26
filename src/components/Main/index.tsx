@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { useEffect, useState } from "react";
 
 import styled from "styled-components";
 
@@ -11,10 +11,10 @@ const Main = () => {
   const { mbti, belief } = getLocalStorage();
 
   const [text, setText] = useState("");
-  const handleText = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
+  const handleText = (value: string) => {
     setText(value);
   };
+<<<<<<< HEAD
 
   const navigate = useNavigate();
   const handleClick = () => {
@@ -22,6 +22,11 @@ const Main = () => {
     navigate('/main/card');
   }
 
+=======
+  useEffect(() => {
+    console.log(text);
+  }, [text]);
+>>>>>>> 3095ae1 (page add)
   return (
     <Container className="w-full h-screen">
       <MbtiBox>
@@ -48,6 +53,7 @@ const Main = () => {
 };
 
 const MbtiBox = styled.div`
+  color: black;
   display: flex;
   flex-direction: row;
   //justify-content: center;
@@ -98,6 +104,7 @@ const Content = styled.div`
   }
 `;
 const Container = styled.div`
+  color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -105,20 +112,21 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
+  color: black;
   width: 100%;
-  height: 4.5rem;
+  //height: 4.5rem;
   padding-inline: 1.3rem;
   display: flex;
   align-items: center;
   flex-direction: row;
-  input {
+
+  textarea {
     background-color: #e1e1e1;
-    height: 100%;
     width: 100%;
     border-radius: 0.7rem;
-
+    resize: none;
+    padding: 10px;
     ::placeholder {
-      text-align: center;
     }
   }
 `;

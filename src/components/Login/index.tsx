@@ -19,9 +19,12 @@ const Login = () => {
 };
 
 const Wrapper = styled.div`
-  margin-bottom: 15rem;
+  margin-bottom: 13rem;
   h1 {
     margin-bottom: 4rem;
+  }
+  p {
+    margin-bottom: 1rem;
   }
 `;
 

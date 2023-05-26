@@ -3,7 +3,7 @@ import Note from "../Common/Note";
 const Paper = () => {
   return (
     <div>
-      <Note />
+      <Note clicked={false} />
     </div>
   );
 };

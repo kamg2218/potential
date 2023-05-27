@@ -15,11 +15,11 @@ import defaultTheme from "./style/defaultTheme";
 const router = createBrowserRouter(routes);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <ThemeProvider theme={defaultTheme}>
-      <Reset />
-      <GlobalStyle />
-      <RouterProvider router={router} />
-    </ThemeProvider>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <ThemeProvider theme={defaultTheme}>
+    <Reset />
+    <GlobalStyle />
+    <RouterProvider router={router} />
+  </ThemeProvider>
+  // </React.StrictMode>
 );

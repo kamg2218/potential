@@ -6,6 +6,7 @@ import TextField from "./TextField";
 import NextButton from "../Common/Button/NextButton";
 import { useNavigate } from "react-router-dom";
 import { getLocalStorage, setLocalStorage } from "../../utils/storage";
+import LastChatButton from "../Common/Button/LastChatButton";
 
 const Main = () => {
   const { mbti, belief } = getLocalStorage();
@@ -43,6 +44,7 @@ const Main = () => {
         </Wrapper>
       </Content>
       <NextButton text="질문하기" className="my-8" onClick={handleClick} />
+      <LastChatButton left="나의 질문" right="받은 질문" handleLeftClick={() => navigate('/pocket')} handleRightClick={() => navigate('/paper')} />
     </Container>
   );
 };
@@ -51,7 +53,6 @@ const MbtiBox = styled.div`
   color: black;
   display: flex;
   flex-direction: row;
-  //justify-content: center;
   align-items: center;
 
   top: 22px;
@@ -98,19 +99,21 @@ const Content = styled.div`
     margin-bottom: 3rem;
   }
 `;
+
 const Container = styled.div`
   color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
+  margin-top: 10rem;
 `;
 
 const Wrapper = styled.div`
   color: black;
   width: 100%;
   //height: 4.5rem;
-  padding-inline: 1.3rem;
+  padding-inline: 3rem;
   display: flex;
   align-items: center;
   flex-direction: row;

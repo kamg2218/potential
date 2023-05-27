@@ -17,6 +17,8 @@ import PocketPage from "../pages/PocketPage";
 
 import MessagePage from "../pages/MessagePage";
 import HistoryPage from "../pages/HistoryPage";
+import Pocket from "../components/Pocket/Pocket";
+import PocketDetails from "../components/Pocket/PocketDetails";
 
 const routes = [
   {
@@ -56,7 +58,20 @@ const routes = [
         ],
       },
       { path: "/paper", element: <PaperPage /> },
-      { path: "/pocket", element: <PocketPage /> },
+      {
+        path: "/pocket",
+        element: <PocketPage />,
+        children: [
+          {
+            index: true,
+            element: <Pocket />,
+          },
+          {
+            path: "details/:id",
+            element: <PocketDetails />
+          }
+        ]
+      },
       { path: "/complete", element: <CompletePage /> },
       { path: "/auth", element: <Oauth /> },
       { path: "/history", element: <HistoryPage /> },

@@ -16,7 +16,7 @@ const Card = ({ mbti, handleMbti }: { mbti: Array<string>, handleMbti: (str: str
           const key = Math.floor(idx / 2);
           const isClicked = mbti[key] === value;
           return (
-            <StyledButton key={idx} $clicked={isClicked} $deg={ROTATE[idx]} onClick={() => handleClick(value)}>
+            <StyledButton key={idx} $clicked={isClicked} $deg={ROTATE[idx]} $zIndex={1} onClick={() => handleClick(value)}>
               <StyledWord>{value}</StyledWord>
               <StyledLabel>{MBTI_LABEL[idx]}</StyledLabel>
             </StyledButton>
@@ -27,13 +27,14 @@ const Card = ({ mbti, handleMbti }: { mbti: Array<string>, handleMbti: (str: str
   );
 };
 
-const StyledButton = styled(Button) < { $clicked: boolean, $deg: number }> `
-  padding: 0.6rem 1.4rem;
+const StyledButton = styled(Button) < { $clicked: boolean, $deg: number, $zIndex: number }> `
+  padding: 1.8rem 3rem;
   border-radius: 8px;
   box-shadow: 1px 1px gray;
 
   background-color: ${({ $clicked }) => $clicked ? "#FFCD29" : "white"};
   transform: ${({ $deg }) => $deg ? `rotate(${$deg}deg)` : 'rotate(0)'};
+  /* z-index: ${({ $zIndex }) => $zIndex ? `${$zIndex}` : ''}; */
 
   :hover {
     background-color: #FFCD29;
@@ -42,7 +43,7 @@ const StyledButton = styled(Button) < { $clicked: boolean, $deg: number }> `
 
 const StyledWord = styled.div`
   color: black;
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: bold;
 
 `;

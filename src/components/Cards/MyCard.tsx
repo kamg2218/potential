@@ -37,7 +37,7 @@ const MyCard = () => {
       <PreviousButton className='ml-6 mt-5' onClick={handlePreviousClick} />
       <div className='grid text-center justify-center gap-4 mt-6'>
         <div className='text-5xl text-white'>나의 MBTI는?</div>
-        <div style={{ color: '#7B7B7B' }}>자신의 MBTI를 선택해 주세요</div>
+        <div className='mb-4' style={{ color: '#7B7B7B' }}>자신의 MBTI를 선택해 주세요</div>
         <Card mbti={mbti} handleMbti={handleMbti} />
         <NextButton text='다음으로' className='my-5' onClick={handleClick} />
       </div>

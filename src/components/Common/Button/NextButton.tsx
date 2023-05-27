@@ -15,7 +15,7 @@ const NextButton = ({ text, className, onClick }: { text: string, className?: st
 const StyledButton = styled(Button)`
   background-color: transparent;
   color: white;
-  font-size: 1rem;
+  font-size: 1.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,7 +23,7 @@ const StyledButton = styled(Button)`
 `;
 
 const StyledIcon = styled(ArrowRightIcon)`
-  width: 1.2rem;
+  width: 1.6rem;
 `;
 
 export default NextButton;

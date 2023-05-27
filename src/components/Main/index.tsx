@@ -20,9 +20,8 @@ export const BELIEF_IMAGE: { [key: string]: string } = {
 };
 
 const Main = () => {
-  const {
-    user: { mbti, belief },
-  } = getLocalStorage();
+  const { user } = getLocalStorage();
+  const { mbti, belief } = user;
 
   const url = belief ? BELIEF_IMAGE[`belief${belief}`] : belief1;
 
@@ -65,8 +64,8 @@ const Main = () => {
         className="my-14"
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
-        onClick={handleClick}
-        // disabled={text ? false : true}
+        onClick={() => handleClick(text)}
+      // disabled={text ? false : true}
       />
       <LastChatButton
         left="지난 질문들"

@@ -30,8 +30,8 @@ export const getLocalStorage = () => {
 export const setLocalStorage = (value: {
   mbti: string | null;
   belief: number | null;
-  msg?: string;
-  to?: string;
+  msg?: string | null;
+  to?: string | null;
 }) => {
   const { user, token } = getLocalStorage();
 

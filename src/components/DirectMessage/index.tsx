@@ -94,7 +94,7 @@ export default function DirectMessage() {
   return (
     <>
       <Container>
-        <Header title={user["name"] || "정진범"} user={user} namePlate={true} useMessage={true} handleClick={() => navigate('/history')} handleMessageClick={() => setIsOpen(true)} />
+        <Header title={user["name"] || "정진범"} user={user} namePlate={true} useMessage={true} handleClick={() => navigate('/history')} handleMessageClick={handleModal} />
         <Wrapper>
           <Content className="scrollbar">
             <PerfectScrollbar>
@@ -104,7 +104,7 @@ export default function DirectMessage() {
                     key={item.id}
                     userName={user["name"] || "정진범"}
                     text={item.message}
-                    handleClick={handleModal}
+                  // handleClick={handleModal}
                   />
                 ))
                 : CONSTANT.map((item, i) => (
@@ -112,7 +112,7 @@ export default function DirectMessage() {
                     key={i}
                     userName={item.user}
                     text={item.text}
-                    handleClick={handleModal}
+                  // handleClick={handleModal}
                   />
                 ))}
             </PerfectScrollbar>
@@ -139,7 +139,6 @@ const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding-inline: 1.8rem;
-  /* background-color: brown; */
 `;
 
 const Content = styled.ul`
@@ -148,7 +147,7 @@ const Content = styled.ul`
   width: 100%;
   height: 84vh;
   max-height: 85vh;
-  padding-block: 4rem;
+  padding-block: 2rem;
   margin-top: 1rem;
 `;
 

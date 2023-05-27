@@ -77,34 +77,66 @@ export const postQuestions = ({ token, data }: { token: string; data: any }) =>
   });
 
 // 답변하기
-export const postAnswers = ({ token, data }: { token: string; data: any }) =>
+export const postAnswers = ({
+  token,
+  question,
+  data,
+}: {
+  token: string;
+  question: number;
+  data: any;
+}) =>
   request({
     headers: { Authorization: `Bearer ${token}` },
     method: 'post',
-    url: `/questions/${data.question}/answers`,
+    url: `/questions/${question}/answers`,
     data: { ...data },
   });
 
 //채팅방 목록 조회
-export const getHistory = ({ token, data }: { token: string; data: any }) =>
+export const getHistory = ({
+  token,
+  user,
+  data,
+}: {
+  token: string;
+  user: number;
+  data: any;
+}) =>
   request({
     headers: { Authorization: `Bearer ${token}` },
-    url: `/users/${data.id}/chats`,
+    url: `/users/${user}/chats`,
     ...data,
   });
 
 // 채팅방 내용 조회
-export const getMessage = ({ token, data }: { token: string; data: any }) =>
+export const getMessage = ({
+  token,
+  id,
+  data,
+}: {
+  token: string;
+  id: number;
+  data: any;
+}) =>
   request({
     headers: { Authorization: `Bearer ${token}` },
-    url: `/chats/${data.id}`,
+    url: `/chats/${id}`,
     ...data,
   });
 
 // 채팅 보내기
-export const postSendChat = ({ token, data }: { token: string; data: any }) =>
+export const postSendChat = ({
+  token,
+  chat,
+  data,
+}: {
+  token: string;
+  chat: number;
+  data: any;
+}) =>
   request({
     headers: { Authorization: `Bearer ${token}` },
-    url: `/chats/${data.id}/send`,
+    url: `/chats/${chat}/send`,
     data: { ...data },
   });

@@ -119,7 +119,7 @@ const MessageList = () => {
   useEffect(() => {
     if (!id) return;
     //@ts-ignore
-    getHistory({ token, data: { id } }).then((res) => setMsg(res));
+    getHistory({ token, user: id, data: {} }).then((res) => setMsg(res));
   }, []);
 
   return (

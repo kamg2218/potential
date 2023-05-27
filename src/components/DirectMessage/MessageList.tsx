@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Header from "../header/Header";
 import NamePlate from "../Common/NamePlate";
+import PerfectScrollbar from "react-perfect-scrollbar";
+import "react-perfect-scrollbar/dist/css/styles.css";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const CONSTANT = [
@@ -9,7 +11,46 @@ export const CONSTANT = [
     name: "정진범",
     text: "대답은 어쩌구 저쩌구 즐글로 위칠가정해져 있는것이 나중에 구 대답은위칠가정해져",
   },
-
+  {
+    mbti: "ENFP",
+    name: "정진범",
+    text: "대답은 어쩌구 저쩌구 즐글로 위칠가정해져 있는것이 나중에 구 대답은위칠가정해져",
+  },
+  {
+    mbti: "ENFP",
+    name: "정진범",
+    text: "대답은 어쩌구 저쩌구 즐글로 위칠가정해져 있는것이 나중에 구 대답은위칠가정해져",
+  },
+  {
+    mbti: "ENFP",
+    name: "정진범",
+    text: "대답은 어쩌구 저쩌구 즐글로 위칠가정해져 있는것이 나중에 구 대답은위칠가정해져",
+  },
+  {
+    mbti: "ENFP",
+    name: "정진범",
+    text: "대답은 어쩌구 저쩌구 즐글로 위칠가정해져 있는것이 나중에 구 대답은위칠가정해져",
+  },
+  {
+    mbti: "ENFP",
+    name: "정진범",
+    text: "대답은 어쩌구 저쩌구 즐글로 위칠가정해져 있는것이 나중에 구 대답은위칠가정해져",
+  },
+  {
+    mbti: "ENFP",
+    name: "정진범",
+    text: "대답은 어쩌구 저쩌구 즐글로 위칠가정해져 있는것이 나중에 구 대답은위칠가정해져",
+  },
+  {
+    mbti: "ENFP",
+    name: "정진범",
+    text: "대답은 어쩌구 저쩌구 즐글로 위칠가정해져 있는것이 나중에 구 대답은위칠가정해져",
+  },
+  {
+    mbti: "ENFP",
+    name: "정진범",
+    text: "대답은 어쩌구 저쩌구 즐글로 위칠가정해져 있는것이 나중에 구 대답은위칠가정해져",
+  },
   {
     mbti: "ENFP",
     name: "정진범",
@@ -50,20 +91,31 @@ const MessageList = () => {
   return (
     <>
       <Header title="지난 대화들" />
-      {CONSTANT.map((item, i) => (
-        <Message key={i}>
-          <Content>
-            <TitleWrapper>
-              <Title>{item.name}</Title>
-              <NamePlate mbti={item.mbti} mbtiPercent={"123"} />
-            </TitleWrapper>
-            <TextBox>{item.text}</TextBox>
-          </Content>
-        </Message>
-      ))}
+      <Container>
+        <PerfectScrollbar>
+          {CONSTANT.map((item, i) => (
+            <Message key={i}>
+              <Content>
+                <TitleWrapper>
+                  <Title>{item.name}</Title>
+                  <NamePlate mbti={item.mbti} mbtiPercent={"123"} />
+                </TitleWrapper>
+                <TextBox>{item.text}</TextBox>
+              </Content>
+            </Message>
+          ))}
+        </PerfectScrollbar>
+      </Container>
     </>
   );
 };
+
+const Container = styled.div`
+  width: 100%;
+  height: 85vh;
+  max-height: 85vh;
+  margin-top: 1rem;
+`;
 
 const Message = styled.div`
   width: 100%;
@@ -74,6 +126,7 @@ const Message = styled.div`
 const Content = styled.div`
   padding-inline: 1rem;
   border-top: 1px solid lightgrey;
+  cursor: pointer;
 `;
 
 const TitleWrapper = styled.div`

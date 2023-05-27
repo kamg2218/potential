@@ -8,18 +8,20 @@ import { useNavigate } from "react-router-dom";
 import { getLocalStorage, setLocalStorage } from "../../utils/storage";
 import LastChatButton from "../Common/Button/LastChatButton";
 
-import belief1 from '../../assets/belief/belief1.png';
-import belief2 from '../../assets/belief/belief2.png';
-import belief3 from '../../assets/belief/belief3.png';
+import belief1 from "../../assets/belief/belief1.png";
+import belief2 from "../../assets/belief/belief2.png";
+import belief3 from "../../assets/belief/belief3.png";
 
 const BELIEF_IMAGE: { [key: string]: string } = {
-  'belief1': belief1,
-  'belief2': belief2,
-  'belief3': belief3,
+  belief1: belief1,
+  belief2: belief2,
+  belief3: belief3,
 };
 
 const Main = () => {
-  const { user: { mbti, belief } } = getLocalStorage();
+  const {
+    user: { mbti, belief },
+  } = getLocalStorage();
 
   const url = belief ? BELIEF_IMAGE[`belief${belief}`] : belief1;
 
@@ -35,7 +37,7 @@ const Main = () => {
   };
 
   return (
-    <Container className="w-full h-screen">
+    <Container>
       <MbtiBox>
         <StyledSpan>·</StyledSpan>
         <span>{mbti}</span>
@@ -57,7 +59,12 @@ const Main = () => {
         </Wrapper>
       </Content>
       <NextButton text="질문하기" className="my-14" onClick={handleClick} />
-      <LastChatButton left="지난 질문들" right="지난 대화들" handleLeftClick={() => navigate('/pocket')} handleRightClick={() => navigate('/paper')} />
+      <LastChatButton
+        left="지난 질문들"
+        right="지난 대화들"
+        handleLeftClick={() => navigate("/pocket")}
+        handleRightClick={() => navigate("/paper")}
+      />
     </Container>
   );
 };
@@ -120,7 +127,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  margin-top: 10rem;
+  margin-top: 13rem;
 `;
 
 const Wrapper = styled.div`

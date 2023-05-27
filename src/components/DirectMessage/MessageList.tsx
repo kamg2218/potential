@@ -93,19 +93,32 @@ export const CONSTANT = [
 ];
 const MessageList = () => {
   const navigate = useNavigate();
-  const { token, user: { id } } = getLocalStorage();
+  const {
+    token,
+    user: { id },
+  } = getLocalStorage();
 
-  const [msg, setMsg] = useState<{ id: number, updated_at: string, logs: { id: number, message: string, created_at: string, receiver: any }[] }[]>([]);
+  const [msg, setMsg] = useState<
+    {
+      id: number;
+      updated_at: string;
+      logs: {
+        id: number;
+        message: string;
+        created_at: string;
+        receiver: any;
+      }[];
+    }[]
+  >([]);
 
   const handleClick = (id: number) => {
     navigate(`/message/${id}`);
-  }
+  };
 
   useEffect(() => {
     if (!id) return;
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
-    getHistory({ token, data: { id } }).then(res => setMsg(res));
+    getHistory({ token, data: { id } }).then((res) => setMsg(res));
   }, []);
 
   return (
@@ -113,34 +126,36 @@ const MessageList = () => {
       <Header title="지난 대화들" />
       <Container>
         <PerfectScrollbar>
-          {msg.length ?
-            msg.map(({ id, logs }) => {
-              const { message, receiver } = logs[0];
-              return (
-                <Message key={id} onClick={() => handleClick(id)}>
+          {
+            msg.length ?
+              msg.map(({ id, logs }) => {
+                const { message, receiver } = logs[0];
+                return (
+                  <Message key={id} onClick={() => handleClick(id)}>
+                    <Content>
+                      <TitleWrapper>
+                        <Title>{receiver.name}</Title>
+                        <NamePlate mbti={receiver.mbti} mbtiPercent={"123"} />
+                      </TitleWrapper>
+                      <TextBox>{message}</TextBox>
+                    </Content>
+                  </Message>
+                )
+              })
+              : (CONSTANT.map((item, i) => (
+                <Message key={i}>
                   <Content>
                     <TitleWrapper>
-                      <Title>{receiver.name}</Title>
-                      <NamePlate mbti={receiver.mbti} mbtiPercent={"123"} />
+                      <Title>{item.name}</Title>
+                      <NamePlate mbti={item.mbti} mbtiPercent={"123"} />
                     </TitleWrapper>
-                    <TextBox>{message}</TextBox>
+                    <TextBox>{item.text}</TextBox>
                   </Content>
                 </Message>
-              )
-            })
-            : (CONSTANT.map((item, i) => (
-              <Message key={i}>
-                <Content>
-                  <TitleWrapper>
-                    <Title>{item.name}</Title>
-                    <NamePlate mbti={item.mbti} mbtiPercent={"123"} />
-                  </TitleWrapper>
-                  <TextBox>{item.text}</TextBox>
-                </Content>
-              </Message>
-            )))}
-        </PerfectScrollbar>
-      </Container>
+              )))
+          }
+        </PerfectScrollbar >
+      </Container >
     </>
   );
 };

@@ -51,9 +51,9 @@ const Modal = ({
                 </TextContainer>
               </Container>
               {content && (
-                <SendButon onClick={handleClick}>
-                  <PaperAirplaneIcon stroke="black" strokeWidth={1} />
-                </SendButon>
+                <SendButton onClick={handleClick}>
+                  <PaperAirplaneIcon stroke="black" strokeWidth={1.3} />
+                </SendButton>
               )}
             </ModalView>
           </ModalBackdrop>
@@ -100,10 +100,12 @@ const ExitButton = styled(ModalBtn)`
   padding: 1.5rem 1.5rem 0rem 0rem;
 `;
 
-const SendButon = styled(ModalBtn)`
-  padding: 0rem 1.5rem 1.5rem 0rem;
+const SendButton = styled(ModalBtn)`
+  margin-right: 1.2rem;
+  padding: 0rem 1rem 1.5rem 0rem;
   width: 3rem;
   background-color: transparent;
+  transform: rotate(45deg);
 `;
 
 const Container = styled.div`

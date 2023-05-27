@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useNavigate, useParams } from "react-router-dom";
 
 import styled from "styled-components";
 import PreviousButton from "../Common/Button/PreviousButton";
 import { useEffect, useState } from "react";
-import { getQuestions } from "../../api/request";
-import { getTokenStorage } from "../../utils/storage";
+import { getMyQeustions } from "../../api/request";
+import { getLocalStorage, getTokenStorage } from "../../utils/storage";
 import Content from "./Content";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
@@ -12,8 +13,9 @@ import "react-perfect-scrollbar/dist/css/styles.css";
 const { token } = getTokenStorage();
 
 const PocketDetails = () => {
-  const { id } = useParams();
+  const { question } = useParams();
   const navigate = useNavigate();
+  const { user: { id } } = getLocalStorage();
 
   const [data, setData] = useState({
     mbti: "INTP",
@@ -103,22 +105,18 @@ const PocketDetails = () => {
   });
   const { mbti, title, user } = data;
 
-  useEffect(() => {
-    getQuestions({
-      token,
-      data: { question: id },
-    })
-      .then((res) => {
-        const { data } = res;
-        setData(data);
-      })
-      .catch((e) => {
-        throw Error("Fail To Get Questions", e);
-      });
-  }, [id]);
   const handleMessageClick = () => {
     console.log("click");
+
   };
+
+  useEffect(() => {
+    if (!id || !question) return;
+
+    // @ts-ignore
+    getMyQeustions({ token, id, data: { question } }).then((res) => setData(res));
+  }, [question]);
+
   return (
     <Container>
       <StyledHeader className="flex items-center gap-3 ">

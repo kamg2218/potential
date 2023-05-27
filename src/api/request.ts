@@ -77,11 +77,19 @@ export const postQuestions = ({ token, data }: { token: string; data: any }) =>
   });
 
 // 답변하기
-export const postAnswers = ({ token, data }: { token: string; data: any }) =>
+export const postAnswers = ({
+  token,
+  question,
+  data,
+}: {
+  token: string;
+  question: number;
+  data: any;
+}) =>
   request({
     headers: { Authorization: `Bearer ${token}` },
     method: 'post',
-    url: `/questions/${data.question}/answers`,
+    url: `/questions/${question}/answers`,
     data: { ...data },
   });
 

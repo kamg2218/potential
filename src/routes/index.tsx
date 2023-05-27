@@ -67,7 +67,7 @@ const routes = [
             element: <Pocket />,
           },
           {
-            path: "details/:id",
+            path: "details/:question",
             element: <PocketDetails />,
           },
         ],

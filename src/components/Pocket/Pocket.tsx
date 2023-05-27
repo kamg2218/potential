@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useNavigate } from "react-router-dom";
 import LastChatButton from "../Common/Button/LastChatButton";
 import Note from "../Common/Note";
@@ -6,7 +7,8 @@ import PreviousButton from "../Common/Button/PreviousButton";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 // import { getLocalStorage } from "../../utils/storage";
-import { getQuestions } from "../../api/request";
+import { getMessage, getMyQeustions, getQuestions } from "../../api/request";
+import { getLocalStorage } from "../../utils/storage";
 
 const DUMMY_DATA = [
   {
@@ -47,22 +49,22 @@ const DUMMY_DATA = [
   },
 ];
 
-// const { user: {mbti}, token } = getLocalStorage();
-
 const Pocket = () => {
+  const { user: { id, mbti }, token } = getLocalStorage();
   const navigate = useNavigate();
 
   const [notes, setNotes] = useState([]);
-  const handleNoteClick = (id: number) => {
-    console.log(id);
-    navigate(`/pocket/details/${id}`);
+  const handleNoteClick = (idx: number) => {
+    navigate(`/pocket/details/${idx}`);
   };
 
   const handlePage = (path: string) => navigate(path);
 
   useEffect(() => {
-    // getQuestions({ token, data: { mbti } })
-    //   .then((data) => { setNotes(data) });
+    if (!id) return;
+
+    //@ts-ignore
+    getMyQeustions({ token, id, data: {} }).then(res => setNotes(res));
   }, []);
 
   return (

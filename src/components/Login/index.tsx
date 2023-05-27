@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const Login = () => {
   return (
-    <div className="w-full h-screen flex flex-col justify-center items-center gap-">
+    <div className="w-full h-screen flex flex-col items-center">
       <Wrapper>
         <h1 className="w-full text-center text-slate-400 text-9xl">MBTI</h1>
         <div style={{ textAlign: "center" }}>
@@ -19,7 +19,7 @@ const Login = () => {
 };
 
 const Wrapper = styled.div`
-  margin-bottom: 13rem;
+  margin: 10rem 0;
   h1 {
     margin-bottom: 4rem;
   }

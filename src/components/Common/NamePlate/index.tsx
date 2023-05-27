@@ -41,7 +41,6 @@ const MbtiPlate = styled.div<{ $useToTalk: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: ${({ $useToTalk }) => ($useToTalk ? "25%" : "14%")};
   cursor: ${({ $useToTalk }) => ($useToTalk ? "pointer" : "none")};
   border: ${({ $useToTalk }) => ($useToTalk ? "1px solid #000" : "none")};
   background-color: ${({ $useToTalk }) => ($useToTalk ? "#F3F3F3" : "#fff")};

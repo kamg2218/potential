@@ -3,17 +3,20 @@ import Button from ".";
 import { ArrowRightIcon } from "@heroicons/react/outline";
 import styled from "styled-components";
 
+interface NextButton {
+  text: string;
+  className?: string;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
+}
 const NextButton = ({
   text,
   className,
   onClick,
-}: {
-  text: string;
-  className?: string;
-  onClick: React.MouseEventHandler<HTMLButtonElement>;
-}) => {
+  disabled = false,
+}: NextButton) => {
   return (
-    <StyledButton onClick={onClick} className={className}>
+    <StyledButton disabled={disabled} onClick={onClick} className={className}>
       {text}
       <StyledIcon stroke="white" strokeWidth="2" />
     </StyledButton>

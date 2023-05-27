@@ -8,18 +8,21 @@ import { useNavigate } from "react-router-dom";
 import { getLocalStorage, setLocalStorage } from "../../utils/storage";
 import LastChatButton from "../Common/Button/LastChatButton";
 
-import belief1 from '../../assets/belief/belief1.png';
-import belief2 from '../../assets/belief/belief2.png';
-import belief3 from '../../assets/belief/belief3.png';
+import belief1 from "../../assets/belief/belief1.png";
+import belief2 from "../../assets/belief/belief2.png";
+import belief3 from "../../assets/belief/belief3.png";
+import pigtail from "../../assets/pigtail.png";
 
 const BELIEF_IMAGE: { [key: string]: string } = {
-  'belief1': belief1,
-  'belief2': belief2,
-  'belief3': belief3,
+  belief1: belief1,
+  belief2: belief2,
+  belief3: belief3,
 };
 
 const Main = () => {
-  const { user: { mbti, belief } } = getLocalStorage();
+  const {
+    user: { mbti, belief },
+  } = getLocalStorage();
 
   const url = belief ? BELIEF_IMAGE[`belief${belief}`] : belief1;
 
@@ -37,7 +40,8 @@ const Main = () => {
   return (
     <Container>
       <MbtiBox>
-        <StyledSpan>·</StyledSpan>
+        <Img src={pigtail} width={25} />
+        <StyledSpan>•</StyledSpan>
         <span>{mbti}</span>
         <StyledBelief src={url} alt="belief" />
       </MbtiBox>
@@ -56,7 +60,12 @@ const Main = () => {
           />
         </Wrapper>
       </Content>
-      <NextButton text="질문하기" className="my-14" onClick={handleClick} />
+      <NextButton
+        text="질문하기"
+        className="my-14"
+        onClick={handleClick}
+        disabled={text ? false : true}
+      />
       <LastChatButton
         left="지난 질문들"
         right="지난 대화들"
@@ -83,7 +92,7 @@ const MbtiBox = styled.div`
   border-radius: 0.5rem;
   background: #fff;
 
-  width: 30%;
+  width: 12rem;
   height: 3.8rem;
 
   span {
@@ -91,10 +100,13 @@ const MbtiBox = styled.div`
   }
 `;
 
+const Img = styled.img`
+  position: absolute;
+  top: 1rem;
+  left: -1.1rem;
+`;
 const StyledSpan = styled.span`
-  font-size: 3.5rem;
-  margin-left: 1rem;
-  margin-right: 0.5rem;
+  font-size: 3rem !important;
 `;
 
 const Content = styled.div`
@@ -131,24 +143,15 @@ const Container = styled.div`
 const Wrapper = styled.div`
   color: black;
   width: 100%;
-  //height: 4.5rem;
+
   padding-inline: 2rem;
   display: flex;
   align-items: center;
   flex-direction: row;
-
-  /* textarea {
-    background-color: #e1e1e1;
-    width: 100%;
-    border-radius: 0.7rem;
-    resize: none;
-    padding: 10px;
-    ::placeholder {
-   } } */
 `;
 
 const StyledBelief = styled.img`
-  height: 2.4rem;
+  height: 2.2rem;
   margin-bottom: 0.2rem;
   margin-left: 0.3rem;
 `;

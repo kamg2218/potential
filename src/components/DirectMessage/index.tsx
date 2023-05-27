@@ -7,10 +7,9 @@ import { PencilIcon } from "@heroicons/react/outline";
 import Modal from "../Common/Modal";
 import { useEffect, useState } from "react";
 import MessageItem from "./MessageItem";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getHistory, getMessage, postSendChat } from "../../api/request";
 import { getLocalStorage } from "../../utils/storage";
-import NamePlate from "../Common/NamePlate";
 
 const CONSTANT = [
   {
@@ -29,6 +28,8 @@ const CONSTANT = [
 
 export default function DirectMessage() {
   const { id } = useParams();
+  const navigate = useNavigate();
+
   const {
     token,
     user: { id: userId },
@@ -93,29 +94,27 @@ export default function DirectMessage() {
   return (
     <>
       <Container>
-        <Header title={user["name"] || "정진범"} />
-        <NamePlate mbti={user["mbti"] || "ENFP"} belief={user["belief"]} />
-        <img />
+        <Header title={user["name"] || "정진범"} user={user} namePlate={true} useMessage={true} handleClick={() => navigate('/history')} handleMessageClick={() => setIsOpen(true)} />
         <Wrapper>
           <Content className="scrollbar">
             <PerfectScrollbar>
               {msg && msg.data && msg.data.length
                 ? msg.data.map((item) => (
-                    <MessageItem
-                      key={item.id}
-                      userName={user["name"] || "정진범"}
-                      text={item.message}
-                      handleClick={handleModal}
-                    />
-                  ))
+                  <MessageItem
+                    key={item.id}
+                    userName={user["name"] || "정진범"}
+                    text={item.message}
+                    handleClick={handleModal}
+                  />
+                ))
                 : CONSTANT.map((item, i) => (
-                    <MessageItem
-                      key={i}
-                      userName={item.user}
-                      text={item.text}
-                      handleClick={handleModal}
-                    />
-                  ))}
+                  <MessageItem
+                    key={i}
+                    userName={item.user}
+                    text={item.text}
+                    handleClick={handleModal}
+                  />
+                ))}
             </PerfectScrollbar>
           </Content>
         </Wrapper>
@@ -139,15 +138,15 @@ export default function DirectMessage() {
 const Container = styled.div``;
 
 const Wrapper = styled.div`
-  padding-inline: 2rem;
-  height: 100%;
+  padding-inline: 1.8rem;
+  /* background-color: brown; */
 `;
 
 const Content = styled.ul`
   border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;
   width: 100%;
-  height: 85vh;
+  height: 84vh;
   max-height: 85vh;
   padding-block: 4rem;
   margin-top: 1rem;

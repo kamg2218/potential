@@ -1,4 +1,4 @@
-const KEY = "potential";
+const KEY = 'potential';
 
 interface SOTRAGE {
   id: number;
@@ -14,18 +14,18 @@ const initial = {
   name: '',
   mbti: 'ENFP',
   belief: 1,
-  msg: "",
-  to: "",
+  msg: '',
+  to: '',
 };
 
 export const getLocalStorage = () => {
   const storage = window.localStorage.getItem(KEY);
 
-  if (!storage) return { user: initial, token: "" };
+  if (!storage) return { user: initial, token: '' };
 
   const { user, token }: { user: SOTRAGE; token: string } = JSON.parse(storage);
 
-  if (!user.mbti) return { user: initial, token: "" };
+  if (!user.mbti) return { user: initial, token: token };
   return { user, token: token };
 };
 
@@ -61,7 +61,7 @@ export const setTokenStorage = ({
 
 export const getTokenStorage = () => {
   const storage = window.localStorage.getItem(KEY);
-  if (!storage) return { token: "", user: initial };
+  if (!storage) return { token: '', user: initial };
 
   const { token } = JSON.parse(storage);
   return token;

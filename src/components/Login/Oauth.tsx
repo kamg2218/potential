@@ -30,6 +30,11 @@ export default function Oauth() {
             redirect_uri: REDIRECT_URI,
             code,
           },
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+            },
+          }
         );
 
         const token = res.data.access_token;

@@ -35,9 +35,11 @@ const Belief = () => {
         <div className="text-2xl text-white">나의 MBTI</div>
         <div className='text-5xl text-white'>얼마나 비슷한가요?</div>
         <div className='flex justify-center my-4'>
-          <StyledLine $rotate={-20} $left={''}>|</StyledLine>
-          <StyledLine $rotate={20} >|</StyledLine>
+          <StyledLine $rotate={-50} $right={'19rem'}>|</StyledLine>
+          <StyledLine $rotate={-10} $right={'16rem'} className=''>|</StyledLine>
           <StyledText>{mbti}</StyledText>
+          <StyledLine $rotate={10} $left={'16rem'}>|</StyledLine>
+          <StyledLine $rotate={50} $left={'19rem'} className=''>|</StyledLine>
         </div>
         <Accuracy accuracy={accuracy} handleAccuracy={handleAccuracy} />
         <NextButton text='다음으로' className='my-8' onClick={handleClick} />

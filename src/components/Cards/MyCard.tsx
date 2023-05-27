@@ -12,16 +12,17 @@ const MBTI_INITIAL = ['E', 'S', 'F', 'J'];
 const MyCard = () => {
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    setLocalStorage({ mbti: mbti.join(''), belief: 1 });
+  const { user: { mbti: localMbti } } = getLocalStorage();
+  const [mbti, setMbti] = useState(localMbti ? localMbti.split('') : MBTI_INITIAL);
+
+  const handleClick = (value: string) => {
+    setLocalStorage({ mbti: value, belief: null });
     navigate('/card/belief');
   }
   const handlePreviousClick = () => {
     navigate('/login');
   }
 
-  const { user: { mbti: localMbti } } = getLocalStorage();
-  const [mbti, setMbti] = useState(localMbti ? localMbti.split('') : MBTI_INITIAL);
   const handleMbti = (str: string) => {
     const idx = MBTI_LIST.findIndex(lst => lst === str);
     if (idx !== -1) {
@@ -39,7 +40,7 @@ const MyCard = () => {
         <div className='text-5xl text-white'>나의 MBTI는?</div>
         <div className='mb-4' style={{ color: '#7B7B7B' }}>자신의 MBTI를 선택해 주세요</div>
         <Card mbti={mbti} handleMbti={handleMbti} />
-        <NextButton text='다음으로' className='my-5' onClick={handleClick} />
+        <NextButton text='다음으로' className='my-5' onClick={() => handleClick(mbti.join(''))} />
       </div>
     </>
   );

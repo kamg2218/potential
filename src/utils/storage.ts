@@ -35,6 +35,7 @@ export const setLocalStorage = (value: {
   to?: string;
 }) => {
   const { user, token } = getLocalStorage();
+  console.log(user, token);
   window.localStorage.setItem(
     KEY,
     JSON.stringify({

@@ -23,7 +23,7 @@ const Belief = () => {
     navigate('/card/mbti');
   }
 
-  const [accuracy, setAccuracy] = useState(Number(belief) || 1);
+  const [accuracy, setAccuracy] = useState(belief || 1);
   const handleAccuracy = (num: number) => {
     setAccuracy(num);
   }
@@ -34,12 +34,12 @@ const Belief = () => {
       <div className="grid text-center justify-center gap-2 mt-6">
         <div className="text-2xl text-white">나의 MBTI</div>
         <div className='text-5xl text-white'>얼마나 비슷한가요?</div>
-        <div className='flex justify-center my-4'>
-          <StyledLine $rotate={-50} $right={'19rem'}>|</StyledLine>
-          <StyledLine $rotate={-10} $right={'16rem'} className=''>|</StyledLine>
+        <div className='flex justify-center my-4 relative'>
+          <StyledLine $rotate={-80} $top={'2rem'} $right={'17rem'}>|</StyledLine>
+          <StyledLine $rotate={-30} $top={'0.5rem'} $right={'15rem'}>|</StyledLine>
           <StyledText>{mbti}</StyledText>
-          <StyledLine $rotate={10} $left={'16rem'}>|</StyledLine>
-          <StyledLine $rotate={50} $left={'19rem'} className=''>|</StyledLine>
+          <StyledLine $rotate={-30} $top={'8rem'} $left={'14rem'}>|</StyledLine>
+          <StyledLine $rotate={-80} $top={'7rem'} $left={'16rem'}>|</StyledLine>
         </div>
         <Accuracy accuracy={accuracy} handleAccuracy={handleAccuracy} />
         <NextButton text='다음으로' className='my-8' onClick={() => handleClick(accuracy)} />
@@ -58,7 +58,7 @@ const StyledText = styled.div`
   -webkit-text-stroke: 1px #FFCD29;
 `;
 
-const StyledLine = styled.div<{ $rotate: number, $left?: string, $right?: string }>`
+const StyledLine = styled.div<{ $rotate: number, $left?: string, $right?: string, $top?: string }>`
   color: transparent;
   width: 4rem;
   height: 6px;
@@ -69,7 +69,7 @@ const StyledLine = styled.div<{ $rotate: number, $left?: string, $right?: string
   transform: ${({ $rotate }) => $rotate ? `rotate(${$rotate}deg)` : 'rotate(0)'};
   left: ${({ $left }) => $left ? $left : 0};
   right: ${({ $right }) => $right ? $right : 0};
-
+  top: ${({ $top }) => $top ? $top : 'unset'};
 
   text-stroke: 1px #FFCD29;
   -webkit-text-stroke: 1px #FFCD29;

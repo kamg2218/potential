@@ -13,7 +13,7 @@ const MyCard = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    setLocalStorage({ mbti: mbti.join(''), belief: '0' });
+    setLocalStorage({ mbti: mbti.join(''), belief: 1 });
     navigate('/card/belief');
   }
   const handlePreviousClick = () => {

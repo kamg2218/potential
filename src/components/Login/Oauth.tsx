@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { postLogin } from "../../api/request";
 import { setTokenStorage } from "../../utils/storage";
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 
 // const REST_API_KEY = "cddf66394b31736dadc6c286c6eb6e5d"; //REST API KEY
 // const CLIENT_SECRET = "PuisJ5MfexduI7mhyoukwIROhTI7gxbD";

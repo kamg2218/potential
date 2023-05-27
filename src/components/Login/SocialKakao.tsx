@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { getTokenStorage } from "../../utils/storage";
+import { getLocalStorage } from "../../utils/storage";
 import { getUser } from "../../api/request";
 import { useNavigate } from "react-router-dom";
 
@@ -14,10 +14,7 @@ const SocialKakao = () => {
   // oauth 요청 URL
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
   const handleLogin = () => {
-    const {
-      token,
-      user: { id },
-    } = getTokenStorage();
+    const { token, user: { id } } = getLocalStorage();
     if (token) {
       getUser({ token, id, data: {} }).then((res) => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment

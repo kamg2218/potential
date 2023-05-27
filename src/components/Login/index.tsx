@@ -19,12 +19,12 @@ const Login = () => {
 };
 
 const Wrapper = styled.div`
-  margin: 10rem 0;
+  margin: 5rem 0;
   line-height: 30px;
 `;
 const Logo = styled.img`
   width: 80%;
-  margin-bottom: 10rem;
+  margin-bottom: 5rem;
 `;
 
 export default Login;

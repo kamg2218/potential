@@ -21,6 +21,7 @@ request.interceptors.request.use(
 
 request.interceptors.response.use(
   (response) => {
+    console.log(response, response.data);
     const res = response.data;
     return res;
   },

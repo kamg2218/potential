@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { postLogin } from "../../api/request";
 import { setTokenStorage } from "../../utils/storage";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 // const REST_API_KEY = "cddf66394b31736dadc6c286c6eb6e5d"; //REST API KEY
 // const CLIENT_SECRET = "PuisJ5MfexduI7mhyoukwIROhTI7gxbD";
@@ -13,6 +13,16 @@ const CLIENT_SECRET = "NuDkF7r2uuLdxkQkpNE3jPJ7uR2sSb5W";
 const REDIRECT_URI = "https://potential.vercel.app/auth"; //Redirect URI
 
 const url = "https://kauth.kakao.com/oauth/token";
+
+// interface Response {
+//   user: {
+//     id: number,
+//     name: string,
+//     mbti: string | null,
+//     belief: number | null,
+//   },
+//   token: string,
+// };
 
 export default function Oauth() {
   const navigate = useNavigate();
@@ -42,8 +52,12 @@ export default function Oauth() {
 
         const login = await postLogin({ token });
 
-        const { token: loginToken, user } = login.data;
-        setTokenStorage({ token: loginToken, user });
+        console.log(login);
+        return;
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
+        const { token: loginToken, user } = login;
+        setTokenStorage({ token: loginToken, user: { id: user.id, name: user.name } });
 
         if (!user.mbti) {
           navigate("/card");

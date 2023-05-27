@@ -1,10 +1,10 @@
 const KEY = 'potential';
 
 const initial = {
-  id: '',
+  id: 0,
   name: '',
   mbti: '',
-  belief: '0',
+  belief: 1,
   msg: '',
   to: '',
 };
@@ -40,7 +40,7 @@ export const setTokenStorage = ({
   user,
 }: {
   token: string;
-  user: { id: string; name: string };
+  user: { id: number; name: string };
 }) => {
   window.localStorage.setItem(KEY, JSON.stringify({ token, user }));
 };

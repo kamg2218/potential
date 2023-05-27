@@ -1,12 +1,12 @@
 const KEY = 'potential';
 
-interface SOTRAGE {
+interface STORAGE {
   id: number;
   name: string;
   mbti: string | null;
   belief: number | null;
-  msg?: string;
-  to?: string;
+  msg: string | null;
+  to: string | null;
 }
 
 const initial = {
@@ -14,6 +14,8 @@ const initial = {
   name: '',
   mbti: null,
   belief: null,
+  msg: null,
+  to: null,
 };
 
 export const getLocalStorage = () => {
@@ -21,7 +23,7 @@ export const getLocalStorage = () => {
 
   if (!storage) return { user: initial, token: '' };
 
-  const { user, token }: { user: SOTRAGE; token: string } = JSON.parse(storage);
+  const { user, token }: { user: STORAGE; token: string } = JSON.parse(storage);
   return { user, token: token };
 };
 

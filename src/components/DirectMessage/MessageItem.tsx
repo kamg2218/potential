@@ -7,9 +7,15 @@ type MessageProps = {
 interface MessageItemProps {
   userName: string;
   text: string;
+  order?: number;
   handleClick: () => void;
 }
-const MessageItem = ({ userName, text, handleClick }: MessageItemProps) => {
+const MessageItem = ({
+  userName,
+  text,
+  order,
+  handleClick,
+}: MessageItemProps) => {
   return (
     <Message user={userName}>
       <div style={{ cursor: "pointer" }} onClick={handleClick}>

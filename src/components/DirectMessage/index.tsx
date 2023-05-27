@@ -36,6 +36,7 @@ export default function DirectMessage() {
     setIsOpen(!isOpen);
   };
 
+<<<<<<< HEAD
   const [msg, setMsg] = useState<{
     data: { id: number, message: string, created_at: string }[], path: string, "per_page": 15,
     "next_cursor": boolean | null,
@@ -43,6 +44,18 @@ export default function DirectMessage() {
     "prev_cursor": boolean | null,
     "prev_page_url": boolean | null
   } | null>(null);
+=======
+  const [msg, setMsg] = useState<{ user: string; text: string }[]>([]);
+
+  //모달에 사용될 데이터
+  const [filterableMsg, setFilterableMsg] = useState<{
+    user: string;
+    text: string;
+  }>({
+    user: "",
+    text: "",
+  });
+>>>>>>> 1a6089a (페이지 레이아웃)
 
   const [user, setUser] = useState<{
     id: number,
@@ -67,7 +80,12 @@ export default function DirectMessage() {
     setChat('');
   };
 
+  const handleMessage = (value: number) => {
+    setFilterableMsg(msg[value]);
+  };
+
   useEffect(() => {
+<<<<<<< HEAD
     if (id && userId) {
       getMessage({ token, id: parseInt(id), data: {} }).then(res => {
         //@ts-ignore
@@ -78,12 +96,19 @@ export default function DirectMessage() {
           setUser(logs[0]['receiver']);
         });
       });
+=======
+    if (id) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+      getMessage({ token, data: { id } }).then((res) => setMsg(res));
+>>>>>>> 1a6089a (페이지 레이아웃)
     }
   }, [id]);
 
   return (
     <>
       <Container>
+<<<<<<< HEAD
         <Header title={user['name'] || "정진범"} />
         <NamePlate mbti={user['mbti'] || 'ENFP'} belief={user['belief']} />
         <img />
@@ -99,14 +124,30 @@ export default function DirectMessage() {
                     handleClick={handleModal}
                   />
                 ))
+=======
+        <Header title="정진범" useMessage handleClick={handleModal} />
+        <Wrapper>
+          <Content className="scrollbar">
+            <PerfectScrollbar>
+              {msg.length
+                ? msg.map((item, i) => (
+                    <MessageItem
+                      key={i}
+                      order={i}
+                      userName={item.user}
+                      text={item.text}
+                      handleClick={handleModal}
+                    />
+                  ))
+>>>>>>> 1a6089a (페이지 레이아웃)
                 : CONSTANT.map((item, i) => (
-                  <MessageItem
-                    key={i}
-                    userName={item.user}
-                    text={item.text}
-                    handleClick={handleModal}
-                  />
-                ))}
+                    <MessageItem
+                      key={i}
+                      userName={item.user}
+                      text={item.text}
+                      handleClick={handleModal}
+                    />
+                  ))}
             </PerfectScrollbar>
           </Content>
         </Wrapper>
@@ -114,13 +155,18 @@ export default function DirectMessage() {
           <Input type="text" value={chat} onChange={handleChat} />
           <StyledIcon onClick={() => handleSendMessge(chat)} />
         </InputContainer>
-      </Container >
+      </Container>
       <Modal
         isOpen={isOpen}
         userName="정진범"
         mbti="ENFJ"
         desc=" 대답은 어쩌구 저쩌구 줄글로 위치가 정해져 있는 것이 나중에 구현하기가 편하겠지. 그러니까 대충 왕 길게 이렇게 적으려고 하는데 글자수 최대가 어느정도일까나? 일단 이건 100자 정도"
+<<<<<<< HEAD
         question="  애인이 어쩌구 저쩌구의 행동을 했을 때 어쩌구 저쩌구 모시깽? 이것은 50자다 50자"
+=======
+        question="애인이 어쩌구 저쩌구의 행동을 했을 때 어쩌구 저쩌구 모시깽? 이것은 50자다 50자"
+        handleClick={handleSendMessge}
+>>>>>>> 1a6089a (페이지 레이아웃)
         handleModal={handleModal}
       />
     </>

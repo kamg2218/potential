@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 
 import styled from "styled-components";
 
@@ -32,8 +32,8 @@ const Main = () => {
   };
 
   const navigate = useNavigate();
-  const handleClick = (value: string) => {
-    setLocalStorage({ mbti, belief, msg: value });
+  const handleClick = () => {
+    setLocalStorage({ mbti, belief, msg: text });
     navigate("/main/card");
   };
 
@@ -66,7 +66,7 @@ const Main = () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
         onClick={handleClick}
-        disabled={text ? false : true}
+        // disabled={text ? false : true}
       />
       <LastChatButton
         left="지난 질문들"

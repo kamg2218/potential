@@ -26,7 +26,7 @@ export const getLocalStorage = () => {
   const { user, token }: { user: SOTRAGE; token: string } = JSON.parse(storage);
 
   if (!user.mbti) return { user: initial, token: "" };
-  return { user, token };
+  return { user, token: token };
 };
 
 export const setLocalStorage = (value: {

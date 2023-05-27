@@ -30,7 +30,7 @@ const Modal = ({
   const {
     user: { mbti: myMbti, belief },
   } = getLocalStorage();
-  const url = belief ? BELIEF_IMAGE[`belief${belief}`] : belief1;
+
   return (
     <>
       {isOpen && (
@@ -42,12 +42,7 @@ const Modal = ({
               <Container>
                 <TitleWrapper>
                   <Title>{userName}</Title>
-                  <NamePlate
-                    mbti={mbti}
-                    src={url}
-                    mbtiPercent="123"
-                    useToTalk
-                  />
+                  <NamePlate mbti={mbti} belief={belief} useToTalk />
                 </TitleWrapper>
 
                 <TextContainer>

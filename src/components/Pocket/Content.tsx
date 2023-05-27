@@ -24,7 +24,7 @@ const Content = ({
         <StyledName>{name}</StyledName>
         <StyledNamePlate
           mbti={mbti}
-          mbtiPercent={"123"}
+          belief={belief}
           useToTalk
           handleClick={handleClick}
         />

@@ -100,3 +100,11 @@ export const getMessage = ({ token, data }: { token: string; data: any }) =>
     url: `/chats/${data.id}`,
     ...data,
   });
+
+// 채팅 보내기
+export const postSendChat = ({ token, data }: { token: string; data: any }) =>
+  request({
+    headers: { Authorization: `Bearer ${token}` },
+    url: `/chats/${data.id}/send`,
+    data: { ...data },
+  });

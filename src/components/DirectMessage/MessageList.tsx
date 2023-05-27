@@ -1,6 +1,13 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import styled from "styled-components";
 import Header from "../header/Header";
 import NamePlate from "../Common/NamePlate";
+import PerfectScrollbar from "react-perfect-scrollbar";
+import "react-perfect-scrollbar/dist/css/styles.css";
+import { useEffect, useState } from "react";
+import { getHistory } from "../../api/request";
+import { getLocalStorage } from "../../utils/storage";
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const CONSTANT = [
@@ -9,7 +16,46 @@ export const CONSTANT = [
     name: "정진범",
     text: "대답은 어쩌구 저쩌구 즐글로 위칠가정해져 있는것이 나중에 구 대답은위칠가정해져",
   },
-
+  {
+    mbti: "ENFP",
+    name: "정진범",
+    text: "대답은 어쩌구 저쩌구 즐글로 위칠가정해져 있는것이 나중에 구 대답은위칠가정해져",
+  },
+  {
+    mbti: "ENFP",
+    name: "정진범",
+    text: "대답은 어쩌구 저쩌구 즐글로 위칠가정해져 있는것이 나중에 구 대답은위칠가정해져",
+  },
+  {
+    mbti: "ENFP",
+    name: "정진범",
+    text: "대답은 어쩌구 저쩌구 즐글로 위칠가정해져 있는것이 나중에 구 대답은위칠가정해져",
+  },
+  {
+    mbti: "ENFP",
+    name: "정진범",
+    text: "대답은 어쩌구 저쩌구 즐글로 위칠가정해져 있는것이 나중에 구 대답은위칠가정해져",
+  },
+  {
+    mbti: "ENFP",
+    name: "정진범",
+    text: "대답은 어쩌구 저쩌구 즐글로 위칠가정해져 있는것이 나중에 구 대답은위칠가정해져",
+  },
+  {
+    mbti: "ENFP",
+    name: "정진범",
+    text: "대답은 어쩌구 저쩌구 즐글로 위칠가정해져 있는것이 나중에 구 대답은위칠가정해져",
+  },
+  {
+    mbti: "ENFP",
+    name: "정진범",
+    text: "대답은 어쩌구 저쩌구 즐글로 위칠가정해져 있는것이 나중에 구 대답은위칠가정해져",
+  },
+  {
+    mbti: "ENFP",
+    name: "정진범",
+    text: "대답은 어쩌구 저쩌구 즐글로 위칠가정해져 있는것이 나중에 구 대답은위칠가정해져",
+  },
   {
     mbti: "ENFP",
     name: "정진범",
@@ -47,23 +93,80 @@ export const CONSTANT = [
   },
 ];
 const MessageList = () => {
+  const navigate = useNavigate();
+  const {
+    token,
+    user: { id },
+  } = getLocalStorage();
+
+  const [msg, setMsg] = useState<
+    {
+      id: number;
+      updated_at: string;
+      logs: {
+        id: number;
+        message: string;
+        created_at: string;
+        receiver: any;
+      }[];
+    }[]
+  >([]);
+
+  const handleClick = (id: number) => {
+    navigate(`/message/${id}`);
+  };
+
+  useEffect(() => {
+    if (!id) return;
+    //@ts-ignore
+    getHistory({ token, user: id, data: {} }).then((res) => setMsg(res));
+  }, []);
+
   return (
     <>
       <Header title="지난 대화들" />
-      {CONSTANT.map((item, i) => (
-        <Message key={i}>
-          <Content>
-            <TitleWrapper>
-              <Title>{item.name}</Title>
-              <NamePlate mbti={item.mbti} mbtiPercent={"123"} />
-            </TitleWrapper>
-            <TextBox>{item.text}</TextBox>
-          </Content>
-        </Message>
-      ))}
+      <Container>
+        <PerfectScrollbar>
+          {
+            msg.length ?
+              msg.map(({ id, logs }) => {
+                const { message, receiver } = logs[0];
+                return (
+                  <Message key={id} onClick={() => handleClick(id)}>
+                    <Content>
+                      <TitleWrapper>
+                        <Title>{receiver.name}</Title>
+                        <NamePlate mbti={receiver.mbti} belief={receiver.belief} />
+                      </TitleWrapper>
+                      <TextBox>{message}</TextBox>
+                    </Content>
+                  </Message>
+                )
+              })
+              : (CONSTANT.map((item, i) => (
+                <Message key={i}>
+                  <Content>
+                    <TitleWrapper>
+                      <Title>{item.name}</Title>
+                      <NamePlate mbti={item.mbti} belief={1} />
+                    </TitleWrapper>
+                    <TextBox>{item.text}</TextBox>
+                  </Content>
+                </Message>
+              )))
+          }
+        </PerfectScrollbar >
+      </Container >
     </>
   );
 };
+
+const Container = styled.div`
+  width: 100%;
+  height: 85vh;
+  max-height: 85vh;
+  margin-top: 1rem;
+`;
 
 const Message = styled.div`
   width: 100%;
@@ -74,6 +177,7 @@ const Message = styled.div`
 const Content = styled.div`
   padding-inline: 1rem;
   border-top: 1px solid lightgrey;
+  cursor: pointer;
 `;
 
 const TitleWrapper = styled.div`

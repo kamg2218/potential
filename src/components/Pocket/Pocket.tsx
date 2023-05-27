@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useNavigate } from "react-router-dom";
 import LastChatButton from "../Common/Button/LastChatButton";
 import Note from "../Common/Note";
@@ -5,8 +6,9 @@ import PreviousButton from "../Common/Button/PreviousButton";
 
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-// import { getLocalStorage, getTokenStorage } from "../../utils/storage";
-import { getQuestions } from "../../api/request";
+// import { getLocalStorage } from "../../utils/storage";
+import { getMessage, getMyQeustions, getQuestions } from "../../api/request";
+import { getLocalStorage } from "../../utils/storage";
 
 const DUMMY_DATA = [
   {
@@ -47,23 +49,22 @@ const DUMMY_DATA = [
   },
 ];
 
-// const { token } = getTokenStorage();
-// const { mbti } = getLocalStorage();
-
 const Pocket = () => {
+  const { user: { id, mbti }, token } = getLocalStorage();
   const navigate = useNavigate();
 
   const [notes, setNotes] = useState([]);
-  const handleNoteClick = (id: number) => {
-    console.log(id);
-    navigate(`/pocket/details/${id}`);
+  const handleNoteClick = (idx: number) => {
+    navigate(`/pocket/details/${idx}`);
   };
 
   const handlePage = (path: string) => navigate(path);
 
   useEffect(() => {
-    // getQuestions({ token, data: { mbti } })
-    //   .then(({ data }) => { setNotes(data) });
+    if (!id) return;
+
+    //@ts-ignore
+    getMyQeustions({ token, id, data: {} }).then(res => setNotes(res));
   }, []);
 
   return (
@@ -74,27 +75,27 @@ const Pocket = () => {
         <NoteWrapper>
           {notes.length
             ? notes.map(({ title, id }, idx) => {
-                return (
-                  <Note
-                    key={id}
-                    id={id}
-                    text={title}
-                    order={idx % 9}
-                    handleClick={handleNoteClick}
-                  />
-                );
-              })
+              return (
+                <Note
+                  key={id}
+                  id={id}
+                  text={title}
+                  order={idx % 9}
+                  handleClick={handleNoteClick}
+                />
+              );
+            })
             : DUMMY_DATA.map(({ title, id }, idx) => {
-                return (
-                  <Note
-                    key={id}
-                    text={title}
-                    id={id}
-                    order={idx % 9}
-                    handleClick={handleNoteClick}
-                  />
-                );
-              })}
+              return (
+                <Note
+                  key={id}
+                  text={title}
+                  id={id}
+                  order={idx % 9}
+                  handleClick={handleNoteClick}
+                />
+              );
+            })}
         </NoteWrapper>
         <LastChatButton
           left="나의 질문"

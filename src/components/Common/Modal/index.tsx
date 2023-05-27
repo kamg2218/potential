@@ -3,7 +3,9 @@ import Button from "../Button";
 import { ReactNode } from "react";
 import NamePlate from "../NamePlate";
 import { PaperAirplaneIcon } from "@heroicons/react/outline";
-
+import { BELIEF_IMAGE } from "../../Main";
+import { getLocalStorage } from "../../../utils/storage";
+import belief1 from "../../../assets/belief/belief1.png";
 interface ModalProps {
   handleModal: () => void;
   isOpen: boolean;
@@ -25,6 +27,10 @@ const Modal = ({
   desc,
   content,
 }: ModalProps) => {
+  const {
+    user: { mbti: myMbti, belief },
+  } = getLocalStorage();
+
   return (
     <>
       {isOpen && (
@@ -36,7 +42,7 @@ const Modal = ({
               <Container>
                 <TitleWrapper>
                   <Title>{userName}</Title>
-                  <NamePlate mbti={mbti} mbtiPercent="123" useToTalk />
+                  <NamePlate mbti={mbti} belief={belief} useToTalk />
                 </TitleWrapper>
 
                 <TextContainer>
@@ -45,9 +51,9 @@ const Modal = ({
                 </TextContainer>
               </Container>
               {content && (
-                <SendButon onClick={handleClick}>
-                  <PaperAirplaneIcon stroke="black" strokeWidth={1} />
-                </SendButon>
+                <SendButton onClick={handleClick}>
+                  <PaperAirplaneIcon stroke="black" strokeWidth={1.3} />
+                </SendButton>
               )}
             </ModalView>
           </ModalBackdrop>
@@ -94,10 +100,12 @@ const ExitButton = styled(ModalBtn)`
   padding: 1.5rem 1.5rem 0rem 0rem;
 `;
 
-const SendButon = styled(ModalBtn)`
-  padding: 0rem 1.5rem 1.5rem 0rem;
+const SendButton = styled(ModalBtn)`
+  margin-right: 1.2rem;
+  padding: 0rem 1rem 1.5rem 0rem;
   width: 3rem;
   background-color: transparent;
+  transform: rotate(45deg);
 `;
 
 const Container = styled.div`
@@ -110,31 +118,31 @@ const Container = styled.div`
 
 const TitleWrapper = styled.div`
   width: 100%;
+  height: 1.3rem;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  height: 1.3rem;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: flex-end;
   -webkit-box-pack: start;
-  justify-content: center;
 `;
 
 const Title = styled.span`
-  margin-right: 0.5rem;
   font-size: 1.4rem;
   font-weight: bold;
+  margin-right: 0.5rem;
 `;
 
 const TextContainer = styled.div`
   padding: 2rem;
   line-height: 23px;
   .question {
-    text-align: center;
-    font-size: 1.5rem;
     font-weight: 600;
+    font-size: 1.5rem;
+    text-align: center;
+    border-bottom: 1px solid #000;
     padding-block-end: 2.5rem;
-    border-bottom: 1px solid black;
   }
   .desc {
     width: 100%;
@@ -147,15 +155,15 @@ const TextContainer = styled.div`
 const ModalView = styled.div.attrs((props) => ({
   role: "dialog",
 }))`
-  border: 2px solid #000000;
-  margin-top: 20rem;
-  color: #000000;
   display: flex;
   align-items: flex-end;
   flex-direction: column;
-  border-radius: 1rem;
-  width: 25%;
+  width: 35rem;
+  margin-top: 20rem;
+  color: #000000;
   background-color: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 1rem;
 `;
 
 export default Modal;

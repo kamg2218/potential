@@ -1,32 +1,27 @@
 import styled from "styled-components";
 import belief1 from "../../../assets/belief/belief1.png";
-import belief2 from "../../../assets/belief/belief2.png";
-import belief3 from "../../../assets/belief/belief3.png";
+
+import { BELIEF_IMAGE } from "../../Main";
 
 interface NamePlateProps {
   id?: string;
   mbti: string;
-  mbtiPercent: string;
+  belief: number | null;
   useToTalk?: boolean;
   handleClick?: () => void;
 }
 
-const findMbtiImg = ({ mbtiPercent }: { mbtiPercent: string }) => {
-  return belief3;
-};
-
 const NamePlate = ({
   id,
   mbti,
-  mbtiPercent,
+  belief,
   useToTalk = false,
   handleClick,
 }: NamePlateProps) => {
-  const typeImg = findMbtiImg({ mbtiPercent });
-
+  const url = belief ? BELIEF_IMAGE[`belief${belief}`] : belief1;
   return (
     <MbtiPlate onClick={handleClick} $useToTalk={useToTalk}>
-      <MbtiType width={10} src={typeImg} />
+      <MbtiType width={10} src={url} />
       <span>{`${mbti} ${useToTalk ? "| 대화하기" : ""} `}</span>
     </MbtiPlate>
   );
@@ -41,7 +36,6 @@ const MbtiPlate = styled.div<{ $useToTalk: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: ${({ $useToTalk }) => ($useToTalk ? "25%" : "13%")};
   cursor: ${({ $useToTalk }) => ($useToTalk ? "pointer" : "none")};
   border: ${({ $useToTalk }) => ($useToTalk ? "1px solid #000" : "none")};
   background-color: ${({ $useToTalk }) => ($useToTalk ? "#F3F3F3" : "#fff")};

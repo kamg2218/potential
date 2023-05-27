@@ -8,12 +8,10 @@ import { getLocalStorage } from "../../utils/storage";
 import { postQuestions } from "../../api/request";
 
 const MBTI_LIST = ["E", "I", "N", "S", "F", "T", "P", "J"];
-const { token } = getLocalStorage();
+const { token, user: { msg } } = getLocalStorage();
 
 const SendCard = () => {
   const navigate = useNavigate();
-
-  const { msg } = getLocalStorage();
 
   const handleClick = () => {
     postQuestions({ token, data: { mbti: mbti.join(""), title: msg } })

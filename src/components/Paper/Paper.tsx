@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { useNavigate } from "react-router-dom";
 import Note from "../Common/Note";
 import LastChatButton from "../Common/Button/LastChatButton";
@@ -6,7 +7,7 @@ import PreviousButton from "../Common/Button/PreviousButton";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { getLocalStorage, getTokenStorage } from "../../utils/storage";
-import { getQuestions } from "../../api/request";
+import { getQuestions, postAnswers, postQuestions } from "../../api/request";
 import Modal from "../Common/Modal";
 import TextArea from "../Common/TextArea/TextArea";
 
@@ -49,23 +50,36 @@ const DUMMY_DATA = [
   },
 ];
 
-const { token } = getTokenStorage();
-const { mbti } = getLocalStorage();
+const { user: { mbti }, token } = getLocalStorage();
 
 const Paper = () => {
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
   const handleModal = () => {
+    setText('');
     setIsOpen(!isOpen);
   };
 
+  const [details, setDetails] = useState({
+    id: 1,
+    mbti: 'ENFP',
+    title: "  애인이 어쩌구 저쩌구의 행동을 했을 때 어쩌구 저쩌구 모시깽 ?이것은 50자다 50자",
+    content: 'sdlkfsldkfjvsldkfjsd sdflsdkfjsdlkfj sdfkl',
+    user: {
+      id: 11,
+      name: '정진범',
+      mbti: "INTP",
+      belief: 1
+    },
+  });
+
   const [notes, setNotes] = useState([]);
   const handleNoteClick = (id: number) => {
-    console.log(id);
-    getQuestions({ token, data: { question: id } }).then(({ data }) => {
-      // TODO
-      // 모달 열어서 데이터 전탈해야함!
+    getQuestions({ token, data: { question: id } }).then((res) => {
+      // @ts-ignore
+      setDetails(res);
+      // setIsOpen(!isOpen);
     });
     setIsOpen(!isOpen);
   };
@@ -75,14 +89,19 @@ const Paper = () => {
     setText(value);
   };
 
-  const handleMessageSend = () => {
-    console.log("api 연동 예정");
+  const handleMessageSend = (question: number, msg: string) => {
+    postAnswers({ token, question, data: { content: msg } })
+
+    setText('');
     setIsOpen(!isOpen);
   };
+
   useEffect(() => {
-    getQuestions({ token, data: { mbti } }).then(({ data }) => {
-      setNotes(data);
-    });
+    // if (!token) navigate('/');
+    // if (!mbti) navigate('/card');
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    getQuestions({ token, data: { mbti } }).then((data) => setNotes(data));
   }, []);
 
   return (
@@ -93,27 +112,27 @@ const Paper = () => {
         <NoteWrapper>
           {notes.length
             ? notes.map(({ title, id }, idx) => {
-                return (
-                  <Note
-                    key={id}
-                    id={id}
-                    text={title}
-                    order={idx % 9}
-                    handleClick={handleNoteClick}
-                  />
-                );
-              })
+              return (
+                <Note
+                  key={id}
+                  id={id}
+                  text={title}
+                  order={idx % 9}
+                  handleClick={() => handleNoteClick(id)}
+                />
+              );
+            })
             : DUMMY_DATA.map(({ title, id }, idx) => {
-                return (
-                  <Note
-                    key={id}
-                    text={title}
-                    id={id}
-                    order={idx % 9}
-                    handleClick={handleNoteClick}
-                  />
-                );
-              })}
+              return (
+                <Note
+                  key={id}
+                  text={title}
+                  id={id}
+                  order={idx % 9}
+                  handleClick={() => handleNoteClick(id)}
+                />
+              );
+            })}
         </NoteWrapper>
         <LastChatButton
           left="나의 질문"
@@ -127,14 +146,11 @@ const Paper = () => {
       <Modal
         handleModal={handleModal}
         isOpen={isOpen}
-        userName="정진범"
-        mbti="ENFJ"
-        question="  애인이 어쩌구 저쩌구의 행동을 했을 때 어쩌구 저쩌구 모시깽?
-      이것은 50자다 50자"
-        desc=" 대답은 어쩌구 저쩌구 줄글로 위치가 정해져 있는 것이 나중에
-      구현하기가 편하겠지. 그러니까 대충 왕 길게 이렇게 적으려고
-      하는데 글자수 최대가 어느정도일까나? 일단 이건 100자 정도"
-        handleClick={handleMessageSend}
+        userName={details.user.name || "정진범"}
+        mbti={details.user.mbti}
+        question={details.title}
+        desc={details.content}
+        handleClick={() => handleMessageSend(details.id, text)}
         content={
           <TextArea
             text={text}

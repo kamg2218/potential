@@ -67,15 +67,15 @@ const routes = [
             element: <Pocket />,
           },
           {
-            path: "details/:id",
-            element: <PocketDetails />
-          }
-        ]
+            path: "details/:question",
+            element: <PocketDetails />,
+          },
+        ],
       },
       { path: "/complete", element: <CompletePage /> },
-      { path: "/auth", element: <Oauth /> },
       { path: "/history", element: <HistoryPage /> },
-      { path: "/message", element: <MessagePage /> },
+      { path: "/message/:id", element: <MessagePage /> },
+      { path: "/auth", element: <Oauth /> },
       { path: "*", element: <Navigate to="/login" /> },
     ],
   },

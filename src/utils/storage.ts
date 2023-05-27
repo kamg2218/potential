@@ -1,35 +1,42 @@
 const KEY = 'potential';
 
+interface SOTRAGE {
+  id: number;
+  name: string;
+  mbti: string | null;
+  belief: number | null;
+  msg?: string;
+  to?: string;
+}
+
 const initial = {
-  id: 0,
+  id: 1,
   name: '',
-  mbti: '',
-  belief: 1,
-  msg: '',
-  to: '',
+  mbti: null,
+  belief: null,
 };
 
 export const getLocalStorage = () => {
   const storage = window.localStorage.getItem(KEY);
 
-  if (!storage) return initial;
+  if (!storage) return { user: initial, token: '' };
 
-  const { user } = JSON.parse(storage);
-  if (!user || !user.mbti || !user.belief) return initial;
-  return user;
+  const { user, token }: { user: SOTRAGE; token: string } = JSON.parse(storage);
+  return { user, token: token };
 };
 
 export const setLocalStorage = (value: {
-  mbti: string;
-  belief: string;
+  mbti: string | null;
+  belief: number | null;
   msg?: string;
   to?: string;
 }) => {
-  const { token, user } = getLocalStorage();
+  const { user, token } = getLocalStorage();
+
   window.localStorage.setItem(
     KEY,
     JSON.stringify({
-      token,
+      token: token,
       user: { ...user, ...value },
     })
   );
@@ -42,13 +49,16 @@ export const setTokenStorage = ({
   token: string;
   user: { id: number; name: string };
 }) => {
-  window.localStorage.setItem(KEY, JSON.stringify({ token, user }));
+  window.localStorage.setItem(
+    KEY,
+    JSON.stringify({ token: token, user: user })
+  );
 };
 
 export const getTokenStorage = () => {
   const storage = window.localStorage.getItem(KEY);
-  if (!storage) return { token: '', user: {} };
+  if (!storage) return { token: '', user: initial };
 
-  const { token, user } = JSON.parse(storage);
-  return { token, user };
+  const { token } = JSON.parse(storage);
+  return token;
 };

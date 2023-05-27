@@ -14,9 +14,9 @@ const Belief = () => {
   const { mbti, belief } = getLocalStorage();
   const { token, user: { id } } = getTokenStorage();
 
-  const handleClick = () => {
-    patchUser({ token, id, data: { mbti, belief } });
-    setLocalStorage({ mbti, belief: String(accuracy) });
+  const handleClick = (value: number) => {
+    patchUser({ token, id, data: { mbti, belief: value } });
+    setLocalStorage({ mbti, belief: value });
     navigate('/main');
   }
   const handlePreviousClick = () => {
@@ -42,7 +42,7 @@ const Belief = () => {
           <StyledLine $rotate={50} $left={'19rem'} className=''>|</StyledLine>
         </div>
         <Accuracy accuracy={accuracy} handleAccuracy={handleAccuracy} />
-        <NextButton text='다음으로' className='my-8' onClick={handleClick} />
+        <NextButton text='다음으로' className='my-8' onClick={() => handleClick(accuracy)} />
       </div >
     </>
   );

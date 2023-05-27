@@ -62,16 +62,17 @@ export default function DirectMessage() {
   }
 
   const handleSendMessge = (value: string) => {
-    postSendChat({ token, data: { id, message: value } });
+    if (!id) return;
+    postSendChat({ token, chat: parseInt(id), data: { message: value } });
     setChat('');
   };
 
   useEffect(() => {
-    if (id) {
-      getMessage({ token, data: { id } }).then(res => {
+    if (id && userId) {
+      getMessage({ token, id: parseInt(id), data: {} }).then(res => {
         //@ts-ignore
         setMsg(res);
-        getHistory({ token, data: { id: userId } }).then(res => {
+        getHistory({ token, user: userId, data: {} }).then(res => {
           // @ts-ignore
           const { logs } = res.find(({ id: idx }) => idx === id);
           setUser(logs[0]['receiver']);

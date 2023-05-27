@@ -10,11 +10,14 @@ const Rest_api_key = "84e3b52ab109360d6443565c365472dc"; //REST API KEY
 const redirect_uri = "https://potential.vercel.app/auth"; //Redirect URI
 
 const SocialKakao = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   // oauth 요청 URL
   const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
   const handleLogin = () => {
-    const { token, user: { id } } = getTokenStorage();
+    const {
+      token,
+      user: { id },
+    } = getTokenStorage();
     if (token) {
       getUser({ token, id, data: {} }).then(({ data }) => {
         if (data.mbti) {
@@ -38,5 +41,6 @@ const KakaoButton = styled.button`
   width: 243px;
   height: 44px;
   font-size: 2rem;
+  font-weight: bold;
 `;
 export default SocialKakao;

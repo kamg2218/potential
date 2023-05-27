@@ -2,6 +2,7 @@ import styled from "styled-components";
 import belief1 from "../../../assets/belief/belief1.png";
 import belief2 from "../../../assets/belief/belief2.png";
 import belief3 from "../../../assets/belief/belief3.png";
+
 interface NamePlateProps {
   id?: string;
   mbti: string;
@@ -10,7 +11,7 @@ interface NamePlateProps {
   handleClick?: () => void;
 }
 
-const findMbtiType = ({ mbtiPercent }: { mbtiPercent: string }) => {
+const findMbtiImg = ({ mbtiPercent }: { mbtiPercent: string }) => {
   return belief3;
 };
 
@@ -21,7 +22,8 @@ const NamePlate = ({
   useToTalk = false,
   handleClick,
 }: NamePlateProps) => {
-  const typeImg = findMbtiType({ mbtiPercent });
+  const typeImg = findMbtiImg({ mbtiPercent });
+
   return (
     <MbtiPlate onClick={handleClick} $useToTalk={useToTalk}>
       <MbtiType width={10} src={typeImg} />

@@ -4,11 +4,9 @@ import Note from "../Common/Note";
 import PreviousButton from "../Common/Button/PreviousButton";
 
 import styled from "styled-components";
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 // import { getLocalStorage, getTokenStorage } from "../../utils/storage";
 import { getQuestions } from "../../api/request";
-import Modal from "../Common/Modal";
-import TextArea from "../Common/TextArea/TextArea";
 
 const DUMMY_DATA = [
   {
@@ -56,21 +54,12 @@ const Pocket = () => {
   const navigate = useNavigate();
 
   const [notes, setNotes] = useState([]);
-
   const handleNoteClick = (id: number) => {
     console.log(id);
     navigate(`/pocket/details/${id}`);
-  }
-
-  const handlePage = (path: string) => navigate(path);
-
-  const [text, setText] = useState("");
-  const handleTextChange = (value: string) => {
-    setText(value);
   };
 
-  const [isOpen, setIsOpen] = useState(false);
-  const handleModal = () => setIsOpen(!isOpen);
+  const handlePage = (path: string) => navigate(path);
 
   useEffect(() => {
     // getQuestions({ token, data: { mbti } })
@@ -85,27 +74,27 @@ const Pocket = () => {
         <NoteWrapper>
           {notes.length
             ? notes.map(({ title, id }, idx) => {
-              return (
-                <Note
-                  key={id}
-                  id={id}
-                  text={title}
-                  order={idx % 9}
-                  handleClick={handleModal}
-                />
-              );
-            })
+                return (
+                  <Note
+                    key={id}
+                    id={id}
+                    text={title}
+                    order={idx % 9}
+                    handleClick={handleNoteClick}
+                  />
+                );
+              })
             : DUMMY_DATA.map(({ title, id }, idx) => {
-              return (
-                <Note
-                  key={id}
-                  text={title}
-                  id={id}
-                  order={idx % 9}
-                  handleClick={handleModal}
-                />
-              );
-            })}
+                return (
+                  <Note
+                    key={id}
+                    text={title}
+                    id={id}
+                    order={idx % 9}
+                    handleClick={handleNoteClick}
+                  />
+                );
+              })}
         </NoteWrapper>
         <LastChatButton
           left="나의 질문"
@@ -115,25 +104,6 @@ const Pocket = () => {
           handleRightClick={() => handlePage("/paper")}
         />
       </div>
-      <Modal
-        handleModal={handleModal}
-        isOpen={isOpen}
-        userName="정진범"
-        mbti="ENFJ"
-        question="  애인이 어쩌구 저쩌구의 행동을 했을 때 어쩌구 저쩌구 모시깽?
-      이것은 50자다 50자"
-        desc=" 대답은 어쩌구 저쩌구 줄글로 위치가 정해져 있는 것이 나중에
-      구현하기가 편하겠지. 그러니까 대충 왕 길게 이렇게 적으려고
-      하는데 글자수 최대가 어느정도일까나? 일단 이건 100자 정도"
-        content={
-          <TextArea
-            text={text}
-            handleChange={handleTextChange}
-            backgrounColor="#FFFFFF"
-            placeholder="이곳을 눌러 답변을 작성해 주세요!"
-          />
-        }
-      />
     </>
   );
 };

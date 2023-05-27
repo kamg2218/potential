@@ -42,11 +42,12 @@ export default function Oauth() {
 
         const login = await postLogin({ token });
 
-        if (!login) {
+        const { token: loginToken, user } = login.data;
+        setTokenStorage({ token: loginToken, user });
+
+        if (!user.mbti) {
           navigate("/card");
         } else {
-          const { token: loginToken, user } = login.data;
-          setTokenStorage({ token: loginToken, user });
           navigate("/main");
         }
       } catch (e) {

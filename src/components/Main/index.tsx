@@ -70,8 +70,8 @@ const Main = () => {
       <LastChatButton
         left="지난 질문들"
         right="지난 대화들"
-        handleLeftClick={() => navigate("/history")}
-        handleRightClick={() => navigate("/pocket")}
+        handleLeftClick={() => navigate("/pocket")}
+        handleRightClick={() => navigate("/history")}
       />
     </Container>
   );

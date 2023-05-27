@@ -16,8 +16,10 @@ const SocialKakao = () => {
   const handleLogin = () => {
     const { token, user: { id } } = getTokenStorage();
     if (token) {
-      getUser({ token, id, data: {} }).then(({ data }) => {
-        if (data.mbti) {
+      getUser({ token, id, data: {} }).then((res) => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        if (res.mbti) {
           navigate("/main");
         } else {
           navigate("/card");

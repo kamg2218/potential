@@ -29,7 +29,10 @@ const CONSTANT = [
 
 export default function DirectMessage() {
   const { id } = useParams();
-  const { token, user: { id: userId } } = getLocalStorage();
+  const {
+    token,
+    user: { id: userId },
+  } = getLocalStorage();
 
   const [isOpen, setIsOpen] = useState(false);
   const handleModal = () => {
@@ -37,45 +40,51 @@ export default function DirectMessage() {
   };
 
   const [msg, setMsg] = useState<{
-    data: { id: number, message: string, created_at: string }[], path: string, "per_page": 15,
-    "next_cursor": boolean | null,
-    "next_page_url": boolean | null,
-    "prev_cursor": boolean | null,
-    "prev_page_url": boolean | null
+    data: { id: number; message: string; created_at: string }[];
+    path: string;
+    per_page: 15;
+    next_cursor: boolean | null;
+    next_page_url: boolean | null;
+    prev_cursor: boolean | null;
+    prev_page_url: boolean | null;
   } | null>(null);
 
   const [user, setUser] = useState<{
-    id: number,
-    name: string,
-    mbti: string | null,
-    belief: number | null
+    id: number;
+    name: string;
+    mbti: string | null;
+    belief: number | null;
   }>({
     id: 1,
-    name: '정진범',
-    mbti: 'ENFP',
+    name: "정진범",
+    mbti: "ENFP",
     belief: null,
   });
 
-  const [chat, setChat] = useState('');
+  const [chat, setChat] = useState("");
   const handleChat = (e: any) => {
     setChat(e.target.value);
-  }
+  };
 
   const handleSendMessge = (value: string) => {
     if (!id) return;
     postSendChat({ token, chat: parseInt(id), data: { message: value } });
-    setChat('');
+    setChat("");
   };
+
+  // const handleMessage = (value: number) => {
+  //   setFilterableMsg(msg[value]);
+  // };
 
   useEffect(() => {
     if (id && userId) {
-      getMessage({ token, id: parseInt(id), data: {} }).then(res => {
+      getMessage({ token, id: parseInt(id), data: {} }).then((res) => {
         //@ts-ignore
         setMsg(res);
-        getHistory({ token, user: userId, data: {} }).then(res => {
+        getHistory({ token, user: userId, data: {} }).then((res) => {
           // @ts-ignore
           const { logs } = res.find(({ id: idx }) => idx === id);
-          setUser(logs[0]['receiver']);
+          setUser(logs[0]["receiver"]);
         });
       });
     }
@@ -84,29 +93,29 @@ export default function DirectMessage() {
   return (
     <>
       <Container>
-        <Header title={user['name'] || "정진범"} />
-        <NamePlate mbti={user['mbti'] || 'ENFP'} belief={user['belief']} />
+        <Header title={user["name"] || "정진범"} />
+        <NamePlate mbti={user["mbti"] || "ENFP"} belief={user["belief"]} />
         <img />
         <Wrapper>
           <Content className="scrollbar">
             <PerfectScrollbar>
-              {msg && msg.data && msg.data.length ?
-                msg.data.map((item) => (
-                  <MessageItem
-                    key={item.id}
-                    userName={user['name'] || '정진범'}
-                    text={item.message}
-                    handleClick={handleModal}
-                  />
-                ))
+              {msg && msg.data && msg.data.length
+                ? msg.data.map((item) => (
+                    <MessageItem
+                      key={item.id}
+                      userName={user["name"] || "정진범"}
+                      text={item.message}
+                      handleClick={handleModal}
+                    />
+                  ))
                 : CONSTANT.map((item, i) => (
-                  <MessageItem
-                    key={i}
-                    userName={item.user}
-                    text={item.text}
-                    handleClick={handleModal}
-                  />
-                ))}
+                    <MessageItem
+                      key={i}
+                      userName={item.user}
+                      text={item.text}
+                      handleClick={handleModal}
+                    />
+                  ))}
             </PerfectScrollbar>
           </Content>
         </Wrapper>
@@ -114,7 +123,7 @@ export default function DirectMessage() {
           <Input type="text" value={chat} onChange={handleChat} />
           <StyledIcon onClick={() => handleSendMessge(chat)} />
         </InputContainer>
-      </Container >
+      </Container>
       <Modal
         isOpen={isOpen}
         userName="정진범"

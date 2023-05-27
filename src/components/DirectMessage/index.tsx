@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import styled from "styled-components";
 import Header from "../header/Header";
 import PerfectScrollbar from "react-perfect-scrollbar";
@@ -7,8 +8,9 @@ import Modal from "../Common/Modal";
 import { useEffect, useState } from "react";
 import MessageItem from "./MessageItem";
 import { useParams } from "react-router-dom";
-import { getMessage } from "../../api/request";
-import { getTokenStorage } from "../../utils/storage";
+import { getHistory, getMessage, postSendChat } from "../../api/request";
+import { getLocalStorage } from "../../utils/storage";
+import NamePlate from "../Common/NamePlate";
 
 const CONSTANT = [
   {
@@ -27,40 +29,72 @@ const CONSTANT = [
 
 export default function DirectMessage() {
   const { id } = useParams();
-  const { token } = getTokenStorage();
+  const { token, user: { id: userId } } = getLocalStorage();
 
   const [isOpen, setIsOpen] = useState(false);
   const handleModal = () => {
     setIsOpen(!isOpen);
   };
 
-  const [msg, setMsg] = useState<{ user: string, text: string }[]>([]);
+  const [msg, setMsg] = useState<{
+    data: { id: number, message: string, created_at: string }[], path: string, "per_page": 15,
+    "next_cursor": boolean | null,
+    "next_page_url": boolean | null,
+    "prev_cursor": boolean | null,
+    "prev_page_url": boolean | null
+  } | null>(null);
 
-  const handleSendMessge = () => {
-    console.log("asd");
+  const [user, setUser] = useState<{
+    id: number,
+    name: string,
+    mbti: string | null,
+    belief: number | null
+  }>({
+    id: 1,
+    name: '정진범',
+    mbti: 'ENFP',
+    belief: null,
+  });
+
+  const [chat, setChat] = useState('');
+  const handleChat = (e: any) => {
+    setChat(e.target.value);
+  }
+
+  const handleSendMessge = (value: string) => {
+    postSendChat({ token, data: { id, message: value } });
+    setChat('');
   };
 
   useEffect(() => {
     if (id) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
-      getMessage({ token, data: { id } }).then(res => setMsg(res));
+      getMessage({ token, data: { id } }).then(res => {
+        //@ts-ignore
+        setMsg(res);
+        getHistory({ token, data: { id: userId } }).then(res => {
+          // @ts-ignore
+          const { logs } = res.find(({ id: idx }) => idx === id);
+          setUser(logs[0]['receiver']);
+        });
+      });
     }
   }, [id]);
 
   return (
     <>
       <Container>
-        <Header title="정진범" />
+        <Header title={user['name'] || "정진범"} />
+        <NamePlate mbti={user['mbti'] || 'ENFP'} belief={user['belief']} />
+        <img />
         <Wrapper>
           <Content className="scrollbar">
             <PerfectScrollbar>
-              {msg.length ?
-                msg.map((item, i) => (
+              {msg && msg.data && msg.data.length ?
+                msg.data.map((item) => (
                   <MessageItem
-                    key={i}
-                    userName={item.user}
-                    text={item.text}
+                    key={item.id}
+                    userName={user['name'] || '정진범'}
+                    text={item.message}
                     handleClick={handleModal}
                   />
                 ))
@@ -76,8 +110,8 @@ export default function DirectMessage() {
           </Content>
         </Wrapper>
         <InputContainer>
-          <Input type="text" />
-          <StyledIcon onClick={handleSendMessge} />
+          <Input type="text" value={chat} onChange={handleChat} />
+          <StyledIcon onClick={() => handleSendMessge(chat)} />
         </InputContainer>
       </Container >
       <Modal
@@ -86,7 +120,6 @@ export default function DirectMessage() {
         mbti="ENFJ"
         desc=" 대답은 어쩌구 저쩌구 줄글로 위치가 정해져 있는 것이 나중에 구현하기가 편하겠지. 그러니까 대충 왕 길게 이렇게 적으려고 하는데 글자수 최대가 어느정도일까나? 일단 이건 100자 정도"
         question="  애인이 어쩌구 저쩌구의 행동을 했을 때 어쩌구 저쩌구 모시깽? 이것은 50자다 50자"
-        handleClick={handleSendMessge}
         handleModal={handleModal}
       />
     </>

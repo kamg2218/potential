@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import styled from "styled-components";
 import Header from "../header/Header";
 import NamePlate from "../Common/NamePlate";
@@ -117,7 +118,6 @@ const MessageList = () => {
 
   useEffect(() => {
     if (!id) return;
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
     getHistory({ token, data: { id } }).then((res) => setMsg(res));
   }, []);
@@ -127,26 +127,23 @@ const MessageList = () => {
       <Header title="지난 대화들" />
       <Container>
         <PerfectScrollbar>
-          {msg.length
-            ? msg.map(({ id, logs }) => {
-                console.log({ logs });
+          {
+            msg.length ?
+              msg.map(({ id, logs }) => {
                 const { message, receiver } = logs[0];
                 return (
                   <Message key={id} onClick={() => handleClick(id)}>
                     <Content>
                       <TitleWrapper>
                         <Title>{receiver.name}</Title>
-                        <NamePlate
-                          mbti={receiver.mbti}
-                          belief={receiver.belief}
-                        />
+                        <NamePlate mbti={receiver.mbti} belief={receiver.belief} />
                       </TitleWrapper>
                       <TextBox>{message}</TextBox>
                     </Content>
                   </Message>
-                );
+                )
               })
-            : CONSTANT.map((item, i) => (
+              : (CONSTANT.map((item, i) => (
                 <Message key={i}>
                   <Content>
                     <TitleWrapper>
@@ -156,9 +153,10 @@ const MessageList = () => {
                     <TextBox>{item.text}</TextBox>
                   </Content>
                 </Message>
-              ))}
-        </PerfectScrollbar>
-      </Container>
+              )))
+          }
+        </PerfectScrollbar >
+      </Container >
     </>
   );
 };

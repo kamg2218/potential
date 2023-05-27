@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 
 import Button from '.';
 
-import { ArrowSmLeftIcon } from '@heroicons/react/outline';
+import { ChevronLeftIcon } from '@heroicons/react/outline';
 import styled from 'styled-components';
 
 const PreviousButton = ({ className, stroke, onClick }: { className?: string, stroke?: string, onClick?: (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void }) => {
@@ -19,7 +19,7 @@ const PreviousButton = ({ className, stroke, onClick }: { className?: string, st
 
   return (
     <StyledButton className={className} onClick={handleClick}>
-      <ArrowSmLeftIcon stroke={stroke ? stroke : 'white'} strokeWidth={1} />
+      <ChevronLeftIcon stroke={stroke ? stroke : 'white'} strokeWidth={1} />
     </StyledButton>
   );
 };

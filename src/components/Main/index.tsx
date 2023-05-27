@@ -32,8 +32,8 @@ const Main = () => {
   };
 
   const navigate = useNavigate();
-  const handleClick = () => {
-    setLocalStorage({ mbti, belief, msg: text });
+  const handleClick = (value: string) => {
+    setLocalStorage({ mbti, belief, msg: value });
     navigate("/main/card");
   };
 

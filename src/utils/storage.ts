@@ -10,9 +10,9 @@ interface SOTRAGE {
 }
 
 const initial = {
-  id: 0,
-  name: "",
-  mbti: "ENFP",
+  id: 1,
+  name: '',
+  mbti: 'ENFP',
   belief: 1,
   msg: "",
   to: "",

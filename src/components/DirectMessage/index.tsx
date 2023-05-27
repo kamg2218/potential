@@ -84,7 +84,7 @@ export default function DirectMessage() {
     <>
       <Container>
         <Header title={user['name'] || "정진범"} />
-        <NamePlate mbti={user['mbti'] || 'ENFP'} mbtiPercent={""} />
+        <NamePlate mbti={user['mbti'] || 'ENFP'} belief={user['belief']} />
         <img />
         <Wrapper>
           <Content className="scrollbar">

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import styled from "styled-components";
 import Header from "../header/Header";
 import NamePlate from "../Common/NamePlate";
@@ -135,7 +136,7 @@ const MessageList = () => {
                     <Content>
                       <TitleWrapper>
                         <Title>{receiver.name}</Title>
-                        <NamePlate mbti={receiver.mbti} mbtiPercent={"123"} />
+                        <NamePlate mbti={receiver.mbti} belief={receiver.belief} />
                       </TitleWrapper>
                       <TextBox>{message}</TextBox>
                     </Content>
@@ -147,7 +148,7 @@ const MessageList = () => {
                   <Content>
                     <TitleWrapper>
                       <Title>{item.name}</Title>
-                      <NamePlate mbti={item.mbti} mbtiPercent={"123"} />
+                      <NamePlate mbti={item.mbti} belief={1} />
                     </TitleWrapper>
                     <TextBox>{item.text}</TextBox>
                   </Content>

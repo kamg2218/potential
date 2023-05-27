@@ -84,3 +84,19 @@ export const postAnswers = ({ token, data }: { token: string; data: any }) =>
     url: `/questions/${data.question}/answers`,
     data: { ...data },
   });
+
+//채팅방 목록 조회
+export const getHistory = ({ token, data }: { token: string; data: any }) =>
+  request({
+    headers: { Authorization: `Bearer ${token}` },
+    url: `/users/${data.id}/chats`,
+    ...data,
+  });
+
+// 채팅방 내용 조회
+export const getMessage = ({ token, data }: { token: string; data: any }) =>
+  request({
+    headers: { Authorization: `Bearer ${token}` },
+    url: `/chats/${data.id}`,
+    ...data,
+  });

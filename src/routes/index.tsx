@@ -74,7 +74,7 @@ const routes = [
       },
       { path: "/complete", element: <CompletePage /> },
       { path: "/history", element: <HistoryPage /> },
-      { path: "/message", element: <MessagePage /> },
+      { path: "/message/:id", element: <MessagePage /> },
       { path: "/auth", element: <Oauth /> },
       { path: "*", element: <Navigate to="/login" /> },
     ],

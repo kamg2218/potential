@@ -3,6 +3,9 @@ import Header from "../header/Header";
 import NamePlate from "../Common/NamePlate";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
+import { useEffect, useState } from "react";
+import { getHistory } from "../../api/request";
+import { getTokenStorage } from "../../utils/storage";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const CONSTANT = [
@@ -88,22 +91,47 @@ export const CONSTANT = [
   },
 ];
 const MessageList = () => {
+  const { token, user: { id } } = getTokenStorage();
+
+  const [msg, setMsg] = useState<{ id: number, updated_at: string, logs: { id: number, message: string, created_at: string, receiver: any }[] }[]>([]);
+
+  useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    getHistory({ token, data: { id } }).then(res => setMsg(res));
+  }, []);
+
   return (
     <>
       <Header title="지난 대화들" />
       <Container>
         <PerfectScrollbar>
-          {CONSTANT.map((item, i) => (
-            <Message key={i}>
-              <Content>
-                <TitleWrapper>
-                  <Title>{item.name}</Title>
-                  <NamePlate mbti={item.mbti} mbtiPercent={"123"} />
-                </TitleWrapper>
-                <TextBox>{item.text}</TextBox>
-              </Content>
-            </Message>
-          ))}
+          {msg.length ?
+            msg.map(({ id, logs }) => {
+              const { message, receiver } = logs[0];
+              return (
+                <Message key={id}>
+                  <Content>
+                    <TitleWrapper>
+                      <Title>{receiver.name}</Title>
+                      <NamePlate mbti={receiver.mbti} mbtiPercent={"123"} />
+                    </TitleWrapper>
+                    <TextBox>{message}</TextBox>
+                  </Content>
+                </Message>
+              )
+            })
+            : (CONSTANT.map((item, i) => (
+              <Message key={i}>
+                <Content>
+                  <TitleWrapper>
+                    <Title>{item.name}</Title>
+                    <NamePlate mbti={item.mbti} mbtiPercent={"123"} />
+                  </TitleWrapper>
+                  <TextBox>{item.text}</TextBox>
+                </Content>
+              </Message>
+            )))}
         </PerfectScrollbar>
       </Container>
     </>

@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Header from "../header/Header";
+import NamePlate from "../Common/NamePlate";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const CONSTANT = [
@@ -54,10 +55,7 @@ const MessageList = () => {
           <Content>
             <TitleWrapper>
               <Title>{item.name}</Title>
-              <MbtiPlate>
-                <Circle />
-                <span>{item.mbti}</span>
-              </MbtiPlate>
+              <NamePlate mbti={item.mbti} mbtiPercent={"123"} />
             </TitleWrapper>
             <TextBox>{item.text}</TextBox>
           </Content>
@@ -72,44 +70,25 @@ const Message = styled.div`
   padding-inline: 2rem;
   padding-block-start: 2rem;
 `;
+
 const Content = styled.div`
   padding-inline: 1rem;
   border-top: 1px solid lightgrey;
 `;
+
 const TitleWrapper = styled.div`
   display: flex;
   flex-direction: row;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  align-content: center;
   height: 1.3rem;
-  align-items: center;
+  align-items: flex-end;
   justify-content: flex-start;
 `;
 
 const Title = styled.span`
   margin-right: 0.5rem;
   font-size: 1.4rem;
-`;
-
-const MbtiPlate = styled.div`
-  border-radius: 1rem;
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-  padding: 2px 5px 2px 3px;
-  font-size: 1.1rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const Circle = styled.div`
-  height: 10px;
-  border: 1px solid pink;
-  background-color: pink;
-  width: 10px;
-  border-radius: 10px;
-  margin-right: 0.3rem;
 `;
 const TextBox = styled.div`
   width: 100%;

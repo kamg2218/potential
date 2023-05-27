@@ -125,7 +125,7 @@ const Pocket = () => {
         desc=" 대답은 어쩌구 저쩌구 줄글로 위치가 정해져 있는 것이 나중에
       구현하기가 편하겠지. 그러니까 대충 왕 길게 이렇게 적으려고
       하는데 글자수 최대가 어느정도일까나? 일단 이건 100자 정도"
-        body={
+        content={
           <TextArea
             text={text}
             handleChange={handleTextChange}

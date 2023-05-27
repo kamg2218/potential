@@ -44,7 +44,7 @@ const Main = () => {
         </Wrapper>
       </Content>
       <NextButton text="질문하기" className="my-8" onClick={handleClick} />
-      <LastChatButton left="나의 질문" right="받은 질문" handleLeftClick={() => navigate('/pocket')} handleRightClick={() => navigate('/paper')} />
+      <LastChatButton left="지난 질문들" right="지난 대화들" handleLeftClick={() => navigate('/pocket')} handleRightClick={() => navigate('/paper')} />
     </Container>
   );
 };

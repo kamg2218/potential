@@ -6,13 +6,12 @@ import NextButton from '../Common/Button/NextButton';
 import PreviousButton from '../Common/Button/PreviousButton';
 
 import styled from 'styled-components';
-import { getLocalStorage, getTokenStorage, setLocalStorage } from '../../utils/storage';
+import { getLocalStorage, setLocalStorage } from '../../utils/storage';
 import { patchUser } from '../../api/request';
 
 const Belief = () => {
   const navigate = useNavigate();
-  const { mbti, belief } = getLocalStorage();
-  const { token, user: { id } } = getTokenStorage();
+  const { user: { id, mbti, belief }, token } = getLocalStorage();
 
   const handleClick = (value: number) => {
     patchUser({ token, id, data: { mbti, belief: value } });
@@ -31,7 +30,7 @@ const Belief = () => {
   return (
     <>
       <PreviousButton className='ml-6 mt-5' onClick={handlePreviousClick} />
-      <div className="grid text-center justify-center gap-2 mt-6">
+      <div className="grid text-center justify-center gap-4 mt-6">
         <div className="text-2xl text-white">나의 MBTI</div>
         <div className='text-5xl text-white'>얼마나 비슷한가요?</div>
         <div className='flex justify-center my-4 relative'>
@@ -50,12 +49,13 @@ const Belief = () => {
 
 const StyledText = styled.div`
   color: transparent;
-  font-size: 7rem;
+  font-size: 6rem;
+  font-weight: 900;
   margin-top: 2rem;
   margin-bottom: 2rem;
   font-weight: bold;
-  text-stroke: 1px #FFCD29;
-  -webkit-text-stroke: 1px #FFCD29;
+  text-stroke: 1.5px #FFCD29;
+  -webkit-text-stroke: 1.5px #FFCD29;
 `;
 
 const StyledLine = styled.div<{ $rotate: number, $left?: string, $right?: string, $top?: string }>`

@@ -8,8 +8,20 @@ import { useNavigate } from "react-router-dom";
 import { getLocalStorage, setLocalStorage } from "../../utils/storage";
 import LastChatButton from "../Common/Button/LastChatButton";
 
+import belief1 from '../../assets/belief/belief1.png';
+import belief2 from '../../assets/belief/belief2.png';
+import belief3 from '../../assets/belief/belief3.png';
+
+const BELIEF_IMAGE: { [key: string]: string } = {
+  'belief1': belief1,
+  'belief2': belief2,
+  'belief3': belief3,
+};
+
 const Main = () => {
-  const { mbti, belief } = getLocalStorage();
+  const { user: { mbti, belief } } = getLocalStorage();
+
+  const url = belief ? BELIEF_IMAGE[`belief${belief}`] : belief1;
 
   const [text, setText] = useState("");
   const handleText = (value: string) => {
@@ -27,6 +39,7 @@ const Main = () => {
       <MbtiBox>
         <StyledSpan>·</StyledSpan>
         <span>{mbti}</span>
+        <StyledBelief src={url} alt="belief" />
       </MbtiBox>
       <Content>
         <h1>
@@ -43,7 +56,7 @@ const Main = () => {
           />
         </Wrapper>
       </Content>
-      <NextButton text="질문하기" className="my-8" onClick={handleClick} />
+      <NextButton text="질문하기" className="my-14" onClick={handleClick} />
       <LastChatButton left="지난 질문들" right="지난 대화들" handleLeftClick={() => navigate('/pocket')} handleRightClick={() => navigate('/paper')} />
     </Container>
   );
@@ -52,6 +65,7 @@ const Main = () => {
 const MbtiBox = styled.div`
   color: black;
   display: flex;
+  gap: 0.4rem;
   flex-direction: row;
   align-items: center;
 
@@ -113,7 +127,7 @@ const Wrapper = styled.div`
   color: black;
   width: 100%;
   //height: 4.5rem;
-  padding-inline: 3rem;
+  padding-inline: 2rem;
   display: flex;
   align-items: center;
   flex-direction: row;
@@ -126,6 +140,12 @@ const Wrapper = styled.div`
     padding: 10px;
     ::placeholder {
    } } */
+`;
+
+const StyledBelief = styled.img`
+  height: 2.4rem;
+  margin-bottom: 0.2rem;
+  margin-left: 0.3rem;
 `;
 
 export default Main;

@@ -49,8 +49,7 @@ const DUMMY_DATA = [
   },
 ];
 
-const { token } = getTokenStorage();
-const { mbti } = getLocalStorage();
+const { user: { mbti }, token } = getLocalStorage();
 
 const Paper = () => {
   const navigate = useNavigate();
@@ -63,10 +62,10 @@ const Paper = () => {
   const [notes, setNotes] = useState([]);
   const handleNoteClick = (id: number) => {
     console.log(id);
-    getQuestions({ token, data: { question: id } }).then(({ data }) => {
-      // TODO
-      // 모달 열어서 데이터 전탈해야함!
-    });
+    // getQuestions({ token, data: { question: id } }).then((res) => {
+    // TODO
+    // 모달 열어서 데이터 전탈해야함!
+    // });
     setIsOpen(!isOpen);
   };
 
@@ -93,27 +92,27 @@ const Paper = () => {
         <NoteWrapper>
           {notes.length
             ? notes.map(({ title, id }, idx) => {
-                return (
-                  <Note
-                    key={id}
-                    id={id}
-                    text={title}
-                    order={idx % 9}
-                    handleClick={handleNoteClick}
-                  />
-                );
-              })
+              return (
+                <Note
+                  key={id}
+                  id={id}
+                  text={title}
+                  order={idx % 9}
+                  handleClick={handleNoteClick}
+                />
+              );
+            })
             : DUMMY_DATA.map(({ title, id }, idx) => {
-                return (
-                  <Note
-                    key={id}
-                    text={title}
-                    id={id}
-                    order={idx % 9}
-                    handleClick={handleNoteClick}
-                  />
-                );
-              })}
+              return (
+                <Note
+                  key={id}
+                  text={title}
+                  id={id}
+                  order={idx % 9}
+                  handleClick={handleNoteClick}
+                />
+              );
+            })}
         </NoteWrapper>
         <LastChatButton
           left="나의 질문"

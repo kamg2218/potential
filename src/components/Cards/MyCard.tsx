@@ -13,14 +13,14 @@ const MyCard = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    setLocalStorage({ mbti: mbti.join(''), belief: '0' });
+    setLocalStorage({ mbti: mbti.join(''), belief: 1 });
     navigate('/card/belief');
   }
   const handlePreviousClick = () => {
     navigate('/login');
   }
 
-  const { mbti: localMbti } = getLocalStorage();
+  const { user: { mbti: localMbti } } = getLocalStorage();
   const [mbti, setMbti] = useState(localMbti ? localMbti.split('') : MBTI_INITIAL);
   const handleMbti = (str: string) => {
     const idx = MBTI_LIST.findIndex(lst => lst === str);

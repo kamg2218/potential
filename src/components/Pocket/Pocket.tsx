@@ -5,7 +5,7 @@ import PreviousButton from "../Common/Button/PreviousButton";
 
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-// import { getLocalStorage, getTokenStorage } from "../../utils/storage";
+// import { getLocalStorage } from "../../utils/storage";
 import { getQuestions } from "../../api/request";
 
 const DUMMY_DATA = [
@@ -47,8 +47,7 @@ const DUMMY_DATA = [
   },
 ];
 
-// const { token } = getTokenStorage();
-// const { mbti } = getLocalStorage();
+// const { user: {mbti}, token } = getLocalStorage();
 
 const Pocket = () => {
   const navigate = useNavigate();
@@ -63,7 +62,7 @@ const Pocket = () => {
 
   useEffect(() => {
     // getQuestions({ token, data: { mbti } })
-    //   .then(({ data }) => { setNotes(data) });
+    //   .then((data) => { setNotes(data) });
   }, []);
 
   return (
@@ -74,27 +73,27 @@ const Pocket = () => {
         <NoteWrapper>
           {notes.length
             ? notes.map(({ title, id }, idx) => {
-                return (
-                  <Note
-                    key={id}
-                    id={id}
-                    text={title}
-                    order={idx % 9}
-                    handleClick={handleNoteClick}
-                  />
-                );
-              })
+              return (
+                <Note
+                  key={id}
+                  id={id}
+                  text={title}
+                  order={idx % 9}
+                  handleClick={handleNoteClick}
+                />
+              );
+            })
             : DUMMY_DATA.map(({ title, id }, idx) => {
-                return (
-                  <Note
-                    key={id}
-                    text={title}
-                    id={id}
-                    order={idx % 9}
-                    handleClick={handleNoteClick}
-                  />
-                );
-              })}
+              return (
+                <Note
+                  key={id}
+                  text={title}
+                  id={id}
+                  order={idx % 9}
+                  handleClick={handleNoteClick}
+                />
+              );
+            })}
         </NoteWrapper>
         <LastChatButton
           left="나의 질문"

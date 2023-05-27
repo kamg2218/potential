@@ -5,7 +5,7 @@ export const postLogin = ({ token }: { token: string }) =>
   request({
     headers: { Authorization: `Bearer ${token}` },
     method: 'post',
-    url: '/kakao/login',
+    url: '/login/kakao',
   });
 
 // 사용자 정보

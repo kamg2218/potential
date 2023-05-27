@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { postLogin } from "../../api/request";
 import { setTokenStorage } from "../../utils/storage";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 
 // const REST_API_KEY = "cddf66394b31736dadc6c286c6eb6e5d"; //REST API KEY
 // const CLIENT_SECRET = "PuisJ5MfexduI7mhyoukwIROhTI7gxbD";
@@ -42,8 +42,10 @@ export default function Oauth() {
 
         const login = await postLogin({ token });
 
-        const { token: loginToken, user } = login.data;
-        setTokenStorage({ token: loginToken, user });
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        const { token: loginToken, user } = login;
+        setTokenStorage({ token: loginToken, user: { id: user.id, name: user.name } });
 
         if (!user.mbti) {
           navigate("/card");

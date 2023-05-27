@@ -14,16 +14,6 @@ const REDIRECT_URI = "https://potential.vercel.app/auth"; //Redirect URI
 
 const url = "https://kauth.kakao.com/oauth/token";
 
-// interface Response {
-//   user: {
-//     id: number,
-//     name: string,
-//     mbti: string | null,
-//     belief: number | null,
-//   },
-//   token: string,
-// };
-
 export default function Oauth() {
   const navigate = useNavigate();
   const code = new URL(window.location.href).searchParams.get("code");
@@ -52,9 +42,8 @@ export default function Oauth() {
 
         const login = await postLogin({ token });
 
-        console.log(login);
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        //@ts-ignore
+        // @ts-ignore
         const { token: loginToken, user } = login;
         setTokenStorage({ token: loginToken, user: { id: user.id, name: user.name } });
 

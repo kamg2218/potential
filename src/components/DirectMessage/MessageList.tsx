@@ -5,7 +5,8 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import { useEffect, useState } from "react";
 import { getHistory } from "../../api/request";
-import { getTokenStorage } from "../../utils/storage";
+import { getLocalStorage } from "../../utils/storage";
+import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const CONSTANT = [
@@ -91,11 +92,17 @@ export const CONSTANT = [
   },
 ];
 const MessageList = () => {
-  const { token, user: { id } } = getTokenStorage();
+  const navigate = useNavigate();
+  const { token, user: { id } } = getLocalStorage();
 
   const [msg, setMsg] = useState<{ id: number, updated_at: string, logs: { id: number, message: string, created_at: string, receiver: any }[] }[]>([]);
 
+  const handleClick = (id: number) => {
+    navigate(`/message/${id}`);
+  }
+
   useEffect(() => {
+    if (!id) return;
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     //@ts-ignore
     getHistory({ token, data: { id } }).then(res => setMsg(res));
@@ -110,7 +117,7 @@ const MessageList = () => {
             msg.map(({ id, logs }) => {
               const { message, receiver } = logs[0];
               return (
-                <Message key={id}>
+                <Message key={id} onClick={() => handleClick(id)}>
                   <Content>
                     <TitleWrapper>
                       <Title>{receiver.name}</Title>

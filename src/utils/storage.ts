@@ -33,6 +33,7 @@ export const setLocalStorage = (value: {
 }) => {
   const { user, token } = getLocalStorage();
 
+  console.log(value, user, { ...user, ...value });
   window.localStorage.setItem(
     KEY,
     JSON.stringify({
@@ -44,14 +45,14 @@ export const setLocalStorage = (value: {
 
 export const setTokenStorage = ({
   token,
-  user,
+  user: { id, name },
 }: {
   token: string;
-  user: { id: number; name: string };
+  user: { id: number; name: string | null };
 }) => {
   window.localStorage.setItem(
     KEY,
-    JSON.stringify({ token: token, user: user })
+    JSON.stringify({ token: token, user: { id, name } })
   );
 };
 

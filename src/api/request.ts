@@ -41,6 +41,24 @@ export const patchUser = ({
     data: { ...data },
   });
 
+// 사용자 - 나의 질문 조회
+export const getMyQeustions = ({
+  token,
+  id,
+  data,
+}: {
+  token: string;
+  id: number;
+  data: any;
+}) =>
+  request({
+    headers: { Authorization: `Bearer ${token}` },
+    url: !data.question
+      ? `/user/${id}/questions`
+      : `/user/${id}/questions/${data.question}`,
+    ...data,
+  });
+
 // 받은 질문들
 export const getQuestions = ({ token, data }: { token: string; data: any }) =>
   request({
@@ -55,5 +73,14 @@ export const postQuestions = ({ token, data }: { token: string; data: any }) =>
     headers: { Authorization: `Bearer ${token}` },
     method: 'post',
     url: '/questions',
+    data: { ...data },
+  });
+
+// 답변하기
+export const postAnswers = ({ token, data }: { token: string; data: any }) =>
+  request({
+    headers: { Authorization: `Bearer ${token}` },
+    method: 'post',
+    url: `/questions/${data.question}/answers`,
     data: { ...data },
   });

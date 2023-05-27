@@ -69,7 +69,7 @@ const Paper = () => {
     <>
       <PreviousButton className="mt-5 ml-5" />
       <div className="px-5 flex flex-col items-center">
-        <div className="text-white text-3xl text-center">받은 질문</div>
+        <div className="text-white text-3xl text-center">지난 질문들</div>
         <NoteWrapper>
           {notes.length ?
             notes.map(({ title, id }, idx) => {

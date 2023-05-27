@@ -1,24 +1,16 @@
-const KEY = "potential";
+const KEY = 'potential';
 
 const initial = {
-  id: "",
-  name: "",
-  mbti: "",
-  belief: "0",
-  msg: "",
-  to: "",
+  id: '',
+  name: '',
+  mbti: '',
+  belief: '0',
+  msg: '',
+  to: '',
 };
 
 export const getLocalStorage = () => {
   const storage = window.localStorage.getItem(KEY);
-  const initial = {
-    id: "",
-    name: "",
-    mbti: "",
-    belief: "0",
-    msg: "",
-    to: "",
-  };
 
   if (!storage) return initial;
 
@@ -55,7 +47,7 @@ export const setTokenStorage = ({
 
 export const getTokenStorage = () => {
   const storage = window.localStorage.getItem(KEY);
-  if (!storage) return { token: "", user: {} };
+  if (!storage) return { token: '', user: {} };
 
   const { token, user } = JSON.parse(storage);
   return { token, user };

@@ -54,6 +54,14 @@ const DUMMY_DATA = [
 
 const Pocket = () => {
   const navigate = useNavigate();
+
+  const [notes, setNotes] = useState([]);
+
+  const handleNoteClick = (id: number) => {
+    console.log(id);
+    navigate(`/pocket/details/${id}`);
+  }
+
   const handlePage = (path: string) => navigate(path);
 
   const [text, setText] = useState("");
@@ -64,7 +72,6 @@ const Pocket = () => {
   const [isOpen, setIsOpen] = useState(false);
   const handleModal = () => setIsOpen(!isOpen);
 
-  const [notes, setNotes] = useState([]);
   useEffect(() => {
     // getQuestions({ token, data: { mbti } })
     //   .then(({ data }) => { setNotes(data) });
@@ -78,27 +85,27 @@ const Pocket = () => {
         <NoteWrapper>
           {notes.length
             ? notes.map(({ title, id }, idx) => {
-                return (
-                  <Note
-                    key={id}
-                    id={id}
-                    text={title}
-                    order={idx % 9}
-                    handleClick={handleModal}
-                  />
-                );
-              })
+              return (
+                <Note
+                  key={id}
+                  id={id}
+                  text={title}
+                  order={idx % 9}
+                  handleClick={handleModal}
+                />
+              );
+            })
             : DUMMY_DATA.map(({ title, id }, idx) => {
-                return (
-                  <Note
-                    key={id}
-                    text={title}
-                    id={id}
-                    order={idx % 9}
-                    handleClick={handleModal}
-                  />
-                );
-              })}
+              return (
+                <Note
+                  key={id}
+                  text={title}
+                  id={id}
+                  order={idx % 9}
+                  handleClick={handleModal}
+                />
+              );
+            })}
         </NoteWrapper>
         <LastChatButton
           left="나의 질문"

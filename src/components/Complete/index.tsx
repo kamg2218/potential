@@ -2,7 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import NextButton from "../Common/Button/NextButton";
 import styled from "styled-components";
-import logo from "../../assets/logo.png";
+import label from "../../assets/label.png";
+
 const RANDOM_TEXT = [
   "노래를 🎧 들어볼까요?",
   "맛있는 푸딩을 먹어요!",
@@ -17,7 +18,7 @@ const Complete = () => {
       <h1>
         <strong>쪽지</strong>가 <br /> 전달되었습니다.
       </h1>
-      <Img src={logo} alt="" />
+      <Img src={label} alt="" />
       <Description>
         <p>정진범님의 질문을 보냈어요!</p>
         <p>쪽지가 도착하면 알려줄게요!</p>
@@ -37,9 +38,10 @@ const Container = styled.div`
     font-weight: bold;
   }
 `;
+
 const Description = styled.div`
   color: #f3f3f3;
-  margin-bottom: 10rem;
+  margin-bottom: 5rem;
   p {
     margin-bottom: 1rem;
   }

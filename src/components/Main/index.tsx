@@ -32,8 +32,8 @@ const Main = () => {
   };
 
   const navigate = useNavigate();
-  const handleClick = () => {
-    setLocalStorage({ mbti, belief, msg: text });
+  const handleClick = (value: string) => {
+    setLocalStorage({ mbti, belief, msg: value });
     navigate("/main/card");
   };
 
@@ -63,14 +63,16 @@ const Main = () => {
       <NextButton
         text="질문하기"
         className="my-14"
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
         onClick={handleClick}
         disabled={text ? false : true}
       />
       <LastChatButton
         left="지난 질문들"
         right="지난 대화들"
-        handleLeftClick={() => navigate("/pocket")}
-        handleRightClick={() => navigate("/paper")}
+        handleLeftClick={() => navigate("/history")}
+        handleRightClick={() => navigate("/pocket")}
       />
     </Container>
   );
@@ -79,7 +81,7 @@ const Main = () => {
 const MbtiBox = styled.div`
   color: black;
   display: flex;
-  gap: 0.4rem;
+  gap: 0.1rem;
   flex-direction: row;
   align-items: center;
 

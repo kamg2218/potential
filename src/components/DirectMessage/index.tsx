@@ -4,8 +4,11 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import "react-perfect-scrollbar/dist/css/styles.css";
 import { PencilIcon } from "@heroicons/react/outline";
 import Modal from "../Common/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MessageItem from "./MessageItem";
+import { useParams } from "react-router-dom";
+import { getMessage } from "../../api/request";
+import { getTokenStorage } from "../../utils/storage";
 
 const CONSTANT = [
   {
@@ -23,32 +26,52 @@ const CONSTANT = [
 ];
 
 export default function DirectMessage() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { id } = useParams();
+  const { token } = getTokenStorage();
 
+  const [isOpen, setIsOpen] = useState(false);
   const handleModal = () => {
     setIsOpen(!isOpen);
   };
+
+  const [msg, setMsg] = useState<{ user: string, text: string }[]>([]);
 
   const handleSendMessge = () => {
     console.log("asd");
   };
 
+  useEffect(() => {
+    if (id) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+      getMessage({ token, data: { id } }).then(res => setMsg(res));
+    }
+  }, [id]);
+
   return (
     <>
       <Container>
         <Header title="정진범" />
-
         <Wrapper>
           <Content className="scrollbar">
             <PerfectScrollbar>
-              {CONSTANT.map((item, i) => (
-                <MessageItem
-                  key={i}
-                  userName={item.user}
-                  text={item.text}
-                  handleClick={handleModal}
-                />
-              ))}
+              {msg.length ?
+                msg.map((item, i) => (
+                  <MessageItem
+                    key={i}
+                    userName={item.user}
+                    text={item.text}
+                    handleClick={handleModal}
+                  />
+                ))
+                : CONSTANT.map((item, i) => (
+                  <MessageItem
+                    key={i}
+                    userName={item.user}
+                    text={item.text}
+                    handleClick={handleModal}
+                  />
+                ))}
             </PerfectScrollbar>
           </Content>
         </Wrapper>
@@ -56,7 +79,7 @@ export default function DirectMessage() {
           <Input type="text" />
           <StyledIcon onClick={handleSendMessge} />
         </InputContainer>
-      </Container>
+      </Container >
       <Modal
         isOpen={isOpen}
         userName="정진범"

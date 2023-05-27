@@ -1,11 +1,13 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from "react-router-dom";
 
-import styled from 'styled-components';
-import PreviousButton from '../Common/Button/PreviousButton';
-import { useEffect, useState } from 'react';
-import { getQuestions } from '../../api/request';
-import { getTokenStorage } from '../../utils/storage';
-import Content from './Content';
+import styled from "styled-components";
+import PreviousButton from "../Common/Button/PreviousButton";
+import { useEffect, useState } from "react";
+import { getQuestions } from "../../api/request";
+import { getTokenStorage } from "../../utils/storage";
+import Content from "./Content";
+import PerfectScrollbar from "react-perfect-scrollbar";
+import "react-perfect-scrollbar/dist/css/styles.css";
 
 const { token } = getTokenStorage();
 
@@ -14,97 +16,129 @@ const PocketDetails = () => {
   const navigate = useNavigate();
 
   const [data, setData] = useState({
-    mbti: 'INTP',
-    title: 'dodldl sldkfj ldfkjsdfl sldkfjdslk sdlfkjsdflksjdflksdjflsdkfjsdf ldkfjsldkf',
+    mbti: "INTP",
+    title:
+      "dodldl sldkfj ldfkjsdfl sldkfjdslk sdlfkjsdflksjdflksdjflsdkfjsdf ldkfjsldkf",
     user: [
       {
         id: 1,
-        name: 'nickname',
-        mbti: 'intp',
+        name: "nickname",
+        mbti: "intp",
         belief: 2,
-        content: 'sldkfjsldkfjsdklfjsdlkfjsdlfk'
+        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
       },
       {
         id: 2,
-        name: 'nickname',
-        mbti: 'intp',
+        name: "nickname",
+        mbti: "intp",
         belief: 2,
-        content: 'sldkfjsldkfjsdklfjsdlkfjsdlfk'
+        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
       },
       {
         id: 3,
-        name: 'nickname',
-        mbti: 'intp',
+        name: "nickname",
+        mbti: "intp",
         belief: 2,
-        content: 'sldkfjsldkfjsdklfjsdlkfjsdlfk'
+        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
       },
       {
         id: 4,
-        name: 'nickname',
-        mbti: 'intp',
+        name: "nickname",
+        mbti: "intp",
         belief: 2,
-        content: 'sldkfjsldkfjsdklfjsdlkfjsdlfk'
+        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
       },
       {
         id: 5,
-        name: 'nickname',
-        mbti: 'intp',
+        name: "nickname",
+        mbti: "intp",
         belief: 2,
-        content: 'sldkfjsldkfjsdklfjsdlkfjsdlfk'
+        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
       },
       {
         id: 6,
-        name: 'nickname',
-        mbti: 'intp',
+        name: "nickname",
+        mbti: "intp",
         belief: 2,
-        content: 'sldkfjsldkfjsdklfjsdlkfjsdlfk'
+        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
       },
       {
         id: 7,
-        name: 'nickname',
-        mbti: 'intp',
+        name: "nickname",
+        mbti: "intp",
         belief: 2,
-        content: 'sldkfjsldkfjsdklfjsdlkfjsdlfk'
+        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
       },
       {
         id: 8,
-        name: 'nickname',
-        mbti: 'intp',
+        name: "nickname",
+        mbti: "intp",
         belief: 2,
-        content: 'sldkfjsldkfjsdklfjsdlkfjsdlfk'
+        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
       },
-    ]
+      {
+        id: 9,
+        name: "nickname",
+        mbti: "intp",
+        belief: 2,
+        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
+      },
+      {
+        id: 10,
+        name: "nickname",
+        mbti: "intp",
+        belief: 2,
+        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
+      },
+      {
+        id: 11,
+        name: "nickname",
+        mbti: "intp",
+        belief: 2,
+        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
+      },
+    ],
   });
   const { mbti, title, user } = data;
 
   useEffect(() => {
     getQuestions({
-      token, data: { question: id }
-    }).then((res) => {
-      const { data } = res;
-      setData(data);
-    }).catch(e => {
-      throw Error('Fail To Get Questions', e);
-    });
+      token,
+      data: { question: id },
+    })
+      .then((res) => {
+        const { data } = res;
+        setData(data);
+      })
+      .catch((e) => {
+        throw Error("Fail To Get Questions", e);
+      });
   }, [id]);
 
   return (
     <Container>
-      <div className="flex items-center gap-3 pt-5 pl-5">
-        <PreviousButton stroke="black" onClick={() => navigate('/pocket')} />
-        <StyledHeader>{mbti}에게 물었다.</StyledHeader>
-      </div>
-      <div className="pt-5 pl-5">
+      <StyledHeader className="flex items-center gap-3 ">
+        <PreviousButton stroke="black" onClick={() => navigate("/pocket")} />
+        <Title>{mbti}에게 물었다.</Title>
+      </StyledHeader>
+      <div>
         <StyledTitle>{title}</StyledTitle>
         <hr className="border border-t-1 border-zinc-500 my-6" />
-        <div className=''>
-          {
-            user.map(({ id, name, mbti, belief, content }) => {
+        <div style={{ height: "90vh" }}>
+          <PerfectScrollbar>
+            {user.map(({ id, name, mbti, belief, content }) => {
               return (
-                <Content key={id} id={id} name={name} mbti={mbti} belief={belief} content={content} />
-              )
-            })
-          }
+                <Content
+                  key={id}
+                  id={id}
+                  name={name}
+                  mbti={mbti}
+                  belief={belief}
+                  content={content}
+                />
+              );
+            })}
+          </PerfectScrollbar>
         </div>
       </div>
     </Container>
@@ -112,18 +146,23 @@ const PocketDetails = () => {
 };
 
 const Container = styled.div`
-  width: 100vw;
+  padding-inline: 1.5rem;
+  padding-block: 1.5rem;
+  border: 1px solid red;
   height: 100vh;
   background-color: white;
   color: black;
-  padding: 0rem 2rem 2rem 0rem;
   overflow: hidden;
 `;
 
-const StyledHeader = styled.div`
+const StyledHeader = styled.header`
+  padding-block: 1.5rem;
+`;
+
+const Title = styled.div`
   width: 100%;
   text-align: center;
-  color: #5F5F5F;
+  color: #5f5f5f;
   font-size: 1.2rem;
 `;
 

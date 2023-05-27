@@ -35,7 +35,7 @@ const Main = () => {
   };
 
   return (
-    <Container className="w-full h-screen">
+    <Container>
       <MbtiBox>
         <StyledSpan>·</StyledSpan>
         <span>{mbti}</span>
@@ -57,7 +57,12 @@ const Main = () => {
         </Wrapper>
       </Content>
       <NextButton text="질문하기" className="my-14" onClick={handleClick} />
-      <LastChatButton left="지난 질문들" right="지난 대화들" handleLeftClick={() => navigate('/pocket')} handleRightClick={() => navigate('/paper')} />
+      <LastChatButton
+        left="지난 질문들"
+        right="지난 대화들"
+        handleLeftClick={() => navigate("/pocket")}
+        handleRightClick={() => navigate("/paper")}
+      />
     </Container>
   );
 };
@@ -120,7 +125,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: start;
-  margin-top: 10rem;
+  margin-top: 13rem;
 `;
 
 const Wrapper = styled.div`

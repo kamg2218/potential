@@ -76,8 +76,8 @@ const Content = styled.ul`
   border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;
   width: 100%;
-  height: 67rem;
-  max-height: 67rem;
+  height: 85vh;
+  max-height: 85vh;
   padding-block: 4rem;
   margin-top: 1rem;
 `;

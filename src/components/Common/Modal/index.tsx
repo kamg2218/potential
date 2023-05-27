@@ -1,26 +1,29 @@
-import { ReactNode } from "react";
 import styled from "styled-components";
 import Button from "../Button";
+import { ReactNode } from "react";
+import NamePlate from "../NamePlate";
+import { PaperAirplaneIcon } from "@heroicons/react/outline";
 
 interface ModalProps {
   handleModal: () => void;
   isOpen: boolean;
-
   userName: string;
   mbti: string;
   question: string;
   desc: string;
-  body?: ReactNode;
+  content?: ReactNode;
+  handleClick?: () => void;
 }
+
 const Modal = ({
   handleModal,
+  handleClick,
   isOpen,
-
   userName,
   mbti,
   question,
   desc,
-  body,
+  content,
 }: ModalProps) => {
   return (
     <>
@@ -33,18 +36,19 @@ const Modal = ({
               <Container>
                 <TitleWrapper>
                   <Title>{userName}</Title>
-                  <MbtiPlate>
-                    <Circle />
-                    <span>{`${mbti}| 대화하기`}</span>
-                  </MbtiPlate>
+                  <NamePlate mbti={mbti} mbtiPercent="123" useToTalk />
                 </TitleWrapper>
 
                 <TextContainer>
                   <div className="question">{question}</div>
-                  {body ? body : <div className="desc">{desc}</div>}
+                  {content ? content : <div className="desc">{desc}</div>}
                 </TextContainer>
               </Container>
-              <SendButon>z</SendButon>
+              {content && (
+                <SendButon onClick={handleClick}>
+                  <PaperAirplaneIcon stroke="black" strokeWidth={1} />
+                </SendButon>
+              )}
             </ModalView>
           </ModalBackdrop>
         </ModalContainer>
@@ -83,6 +87,7 @@ const ModalBtn = styled(Button)`
   color: #000000;
   font-weight: bold;
   border-radius: 1rem;
+  background-color: transparent;
 `;
 
 const ExitButton = styled(ModalBtn)`
@@ -91,6 +96,8 @@ const ExitButton = styled(ModalBtn)`
 
 const SendButon = styled(ModalBtn)`
   padding: 0rem 1.5rem 1.5rem 0rem;
+  width: 3rem;
+  background-color: transparent;
 `;
 
 const Container = styled.div`
@@ -102,41 +109,21 @@ const Container = styled.div`
 `;
 
 const TitleWrapper = styled.div`
-  display: flex;
-  flex-direction: row;
+  width: 100%;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  align-content: center;
   height: 1.3rem;
-  align-items: center;
-  justify-content: flex-start;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  -webkit-box-pack: start;
+  justify-content: center;
 `;
 
 const Title = styled.span`
   margin-right: 0.5rem;
   font-size: 1.4rem;
   font-weight: bold;
-`;
-
-const Circle = styled.div`
-  height: 10px;
-  border: 1px solid pink;
-  background-color: pink;
-  width: 10px;
-  border-radius: 10px;
-  margin-right: 0.3rem;
-`;
-
-const MbtiPlate = styled.div`
-  border-radius: 1rem;
-  background-color: rgb(255, 255, 255);
-  color: rgb(0, 0, 0);
-  padding: 2px 5px 2px 3px;
-  font-size: 1.1rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  border: 1px solid #000;
 `;
 
 const TextContainer = styled.div`
@@ -160,6 +147,7 @@ const TextContainer = styled.div`
 const ModalView = styled.div.attrs((props) => ({
   role: "dialog",
 }))`
+  border: 2px solid #000000;
   margin-top: 20rem;
   color: #000000;
   display: flex;

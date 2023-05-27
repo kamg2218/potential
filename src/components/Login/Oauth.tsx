@@ -53,7 +53,6 @@ export default function Oauth() {
         const login = await postLogin({ token });
 
         console.log(login);
-        return;
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
         const { token: loginToken, user } = login;

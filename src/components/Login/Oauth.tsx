@@ -9,10 +9,10 @@ import axios from "axios";
 // const REDIRECT_URI = "http://localhost:5173/auth"; //Redirect URI
 
 const REST_API_KEY = "84e3b52ab109360d6443565c365472dc"; //REST API KEY
-const CLIENT_SECRET = "NuDkF7r2uuLdxkQkpNE3jPJ7uR2sSb5W"
+const CLIENT_SECRET = "NuDkF7r2uuLdxkQkpNE3jPJ7uR2sSb5W";
 const REDIRECT_URI = "https://potential.vercel.app/auth"; //Redirect URI
 
-const url = 'https://kauth.kakao.com/oauth/token';
+const url = "https://kauth.kakao.com/oauth/token";
 
 export default function Oauth() {
   const navigate = useNavigate();
@@ -21,15 +21,21 @@ export default function Oauth() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await axios.post(url, {
-          grant_type: 'authorization_code',
-          client_id: REST_API_KEY,
-          client_secret: CLIENT_SECRET,
-          redirect_uri: REDIRECT_URI,
-          code,
-        }, {
-          headers: { "Content-Type": 'application/x-www-form-urlencoded;charset=utf-8' }
-        });
+        const res = await axios.post(
+          url,
+          {
+            grant_type: "authorization_code",
+            client_id: REST_API_KEY,
+            client_secret: CLIENT_SECRET,
+            redirect_uri: REDIRECT_URI,
+            code,
+          },
+          {
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded;charset=utf-8",
+            },
+          }
+        );
 
         const token = res.data.access_token;
         window.localStorage.setItem("token", token);
@@ -37,7 +43,7 @@ export default function Oauth() {
         const login = await postLogin({ token });
 
         if (!login) {
-          navigate('/card');
+          navigate("/card");
         } else {
           const { token: loginToken, user } = login.data;
           setTokenStorage({ token: loginToken, user });

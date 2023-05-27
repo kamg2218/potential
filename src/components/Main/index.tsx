@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import styled from "styled-components";
 
-import TextField from "./TextField";
+import TextField from "../Common/TextArea/TextArea";
 import NextButton from "../Common/Button/NextButton";
 import { useNavigate } from "react-router-dom";
 import { getLocalStorage, setLocalStorage } from "../../utils/storage";
@@ -118,15 +118,14 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: row;
 
-  textarea {
+  /* textarea {
     background-color: #e1e1e1;
     width: 100%;
     border-radius: 0.7rem;
     resize: none;
     padding: 10px;
     ::placeholder {
-    }
-  }
+   } } */
 `;
 
 export default Main;

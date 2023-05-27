@@ -1,8 +1,10 @@
-import axios from "axios";
+import axios from 'axios';
 
-const BASE_URL = "";
+// const BASE_URL = "";
+const LOCAL_SERVER = 'https://911b-175-192-26-222.ngrok-free.app';
+
 const request = axios.create({
-  baseURL: BASE_URL,
+  baseURL: LOCAL_SERVER,
 });
 
 request.defaults.timeout = 2500;

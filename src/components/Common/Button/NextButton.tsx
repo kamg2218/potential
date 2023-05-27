@@ -1,13 +1,21 @@
 import Button from ".";
 
-import { ArrowRightIcon } from '@heroicons/react/outline';
+import { ArrowRightIcon } from "@heroicons/react/outline";
 import styled from "styled-components";
 
-const NextButton = ({ text, className, onClick }: { text: string, className?: string, onClick: React.MouseEventHandler<HTMLButtonElement> }) => {
+const NextButton = ({
+  text,
+  className,
+  onClick,
+}: {
+  text: string;
+  className?: string;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+}) => {
   return (
     <StyledButton onClick={onClick} className={className}>
       {text}
-      <StyledIcon stroke="white" strokeWidth='2' />
+      <StyledIcon stroke="white" strokeWidth="2" />
     </StyledButton>
   );
 };

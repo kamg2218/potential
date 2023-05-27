@@ -6,7 +6,7 @@ import Button from '.';
 import { ArrowSmLeftIcon } from '@heroicons/react/outline';
 import styled from 'styled-components';
 
-const PreviousButton = ({ className, onClick }: { className?: string, onClick?: (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void }) => {
+const PreviousButton = ({ className, stroke, onClick }: { className?: string, stroke?: string, onClick?: (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void }) => {
   const navigate = useNavigate();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -19,7 +19,7 @@ const PreviousButton = ({ className, onClick }: { className?: string, onClick?: 
 
   return (
     <StyledButton className={className} onClick={handleClick}>
-      <ArrowSmLeftIcon stroke='white' strokeWidth={1} />
+      <ArrowSmLeftIcon stroke={stroke ? stroke : 'white'} strokeWidth={1} />
     </StyledButton>
   );
 };

@@ -12,10 +12,8 @@ interface SOTRAGE {
 const initial = {
   id: 1,
   name: '',
-  mbti: 'ENFP',
-  belief: 1,
-  msg: '',
-  to: '',
+  mbti: null,
+  belief: null,
 };
 
 export const getLocalStorage = () => {
@@ -24,8 +22,6 @@ export const getLocalStorage = () => {
   if (!storage) return { user: initial, token: '' };
 
   const { user, token }: { user: SOTRAGE; token: string } = JSON.parse(storage);
-
-  if (!user.mbti) return { user: initial, token: token };
   return { user, token: token };
 };
 

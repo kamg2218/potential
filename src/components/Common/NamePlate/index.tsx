@@ -6,27 +6,23 @@ import belief3 from "../../../assets/belief/belief3.png";
 interface NamePlateProps {
   id?: string;
   mbti: string;
+  src?: string;
   mbtiPercent: string;
   useToTalk?: boolean;
   handleClick?: () => void;
 }
 
-const findMbtiImg = ({ mbtiPercent }: { mbtiPercent: string }) => {
-  return belief3;
-};
-
 const NamePlate = ({
   id,
   mbti,
+  src,
   mbtiPercent,
   useToTalk = false,
   handleClick,
 }: NamePlateProps) => {
-  const typeImg = findMbtiImg({ mbtiPercent });
-
   return (
     <MbtiPlate onClick={handleClick} $useToTalk={useToTalk}>
-      <MbtiType width={10} src={typeImg} />
+      <MbtiType width={10} src={src} />
       <span>{`${mbti} ${useToTalk ? "| 대화하기" : ""} `}</span>
     </MbtiPlate>
   );

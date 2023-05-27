@@ -13,7 +13,7 @@ import belief2 from "../../assets/belief/belief2.png";
 import belief3 from "../../assets/belief/belief3.png";
 import pigtail from "../../assets/pigtail.png";
 
-const BELIEF_IMAGE: { [key: string]: string } = {
+export const BELIEF_IMAGE: { [key: string]: string } = {
   belief1: belief1,
   belief2: belief2,
   belief3: belief3,

@@ -3,7 +3,9 @@ import Button from "../Button";
 import { ReactNode } from "react";
 import NamePlate from "../NamePlate";
 import { PaperAirplaneIcon } from "@heroicons/react/outline";
-
+import { BELIEF_IMAGE } from "../../Main";
+import { getLocalStorage } from "../../../utils/storage";
+import belief1 from "../../../assets/belief/belief1.png";
 interface ModalProps {
   handleModal: () => void;
   isOpen: boolean;
@@ -25,6 +27,10 @@ const Modal = ({
   desc,
   content,
 }: ModalProps) => {
+  const {
+    user: { mbti: myMbti, belief },
+  } = getLocalStorage();
+  const url = belief ? BELIEF_IMAGE[`belief${belief}`] : belief1;
   return (
     <>
       {isOpen && (
@@ -36,7 +42,12 @@ const Modal = ({
               <Container>
                 <TitleWrapper>
                   <Title>{userName}</Title>
-                  <NamePlate mbti={mbti} mbtiPercent="123" useToTalk />
+                  <NamePlate
+                    mbti={mbti}
+                    src={url}
+                    mbtiPercent="123"
+                    useToTalk
+                  />
                 </TitleWrapper>
 
                 <TextContainer>

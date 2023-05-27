@@ -1,9 +1,9 @@
-import Pocket from "../components/Pocket/Pocket";
+import { Outlet } from "react-router-dom";
 
 const PocketPage = () => {
   return (
     <>
-      <Pocket />
+      <Outlet />
     </>
   );
 };

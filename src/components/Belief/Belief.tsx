@@ -7,7 +7,7 @@ import PreviousButton from '../Common/Button/PreviousButton';
 
 import styled from 'styled-components';
 import { getLocalStorage, getTokenStorage, setLocalStorage } from '../../utils/storage';
-import { postUser } from '../../api/request';
+import { patchUser } from '../../api/request';
 
 const Belief = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Belief = () => {
   const { token, user: { id } } = getTokenStorage();
 
   const handleClick = () => {
-    postUser({ token, id, data: { mbti, belief } });
+    patchUser({ token, id, data: { mbti, belief } });
     setLocalStorage({ mbti, belief: String(accuracy) });
     navigate('/main');
   }

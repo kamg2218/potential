@@ -6,6 +6,7 @@ import TextField from "./TextField";
 import NextButton from "../Common/Button/NextButton";
 import { useNavigate } from "react-router-dom";
 import { getLocalStorage, setLocalStorage } from "../../utils/storage";
+import LastChatButton from "../Common/Button/LastChatButton";
 
 const Main = () => {
   const { mbti, belief } = getLocalStorage();
@@ -43,6 +44,7 @@ const Main = () => {
         </Wrapper>
       </Content>
       <NextButton text="질문하기" className="my-8" onClick={handleClick} />
+      <LastChatButton left="나의 질문" right="받은 질문" handleLeftClick={() => navigate('/pocket')} handleRightClick={() => navigate('/paper')} />
     </Container>
   );
 };

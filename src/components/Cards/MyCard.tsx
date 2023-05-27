@@ -12,7 +12,8 @@ const MBTI_INITIAL = ['E', 'S', 'F', 'J'];
 const MyCard = () => {
   const navigate = useNavigate();
 
-  const { user: { mbti: localMbti } } = getLocalStorage();
+  const { user } = getLocalStorage();
+  const { mbti: localMbti } = user;
   const [mbti, setMbti] = useState(localMbti ? localMbti.split('') : MBTI_INITIAL);
 
   const handleClick = (value: string) => {

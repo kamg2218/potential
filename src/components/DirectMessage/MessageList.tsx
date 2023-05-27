@@ -124,7 +124,7 @@ const MessageList = () => {
 
   return (
     <>
-      <Header title="지난 대화들" />
+      <Header title="지난 대화들" handleClick={() => navigate('/main')} />
       <Container>
         <PerfectScrollbar>
           {

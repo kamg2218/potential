@@ -8,7 +8,7 @@ interface MessageItemProps {
   userName: string;
   text: string;
   order?: number;
-  handleClick: () => void;
+  handleClick?: () => void;
 }
 const MessageItem = ({
   userName,
@@ -37,7 +37,7 @@ const Message = styled.li<MessageProps>`
     border: 1px solid ${(props) => (props.user === "1" ? "#ffcd29" : "#F3F3F3")};
     border-radius: 0.5rem;
     background-color: ${(props) =>
-      props.user === "1" ? "#ffcd29" : "#F3F3F3"};
+    props.user === "1" ? "#ffcd29" : "#F3F3F3"};
     color: black;
     margin-bottom: 1rem;
   }

@@ -20,7 +20,7 @@ export const getUser = ({
 }) =>
   request({
     headers: { Authorization: `Bearer ${token}` },
-    metho: 'options',
+    method: 'options',
     url: `/users/${id}`,
     ...data,
   });
@@ -138,6 +138,7 @@ export const postSendChat = ({
 }) =>
   request({
     headers: { Authorization: `Bearer ${token}` },
+    method: 'post',
     url: `/chats/${chat}/send`,
     data: { ...data },
   });

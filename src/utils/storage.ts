@@ -32,10 +32,12 @@ export const setLocalStorage = (value: {
   belief: number | null;
   msg?: string | null;
   to?: string | null;
+  id?: number;
+  name?: string;
 }) => {
   const { user, token } = getLocalStorage();
 
-  // console.log(value, user, { ...user, ...value });
+  console.log(value, user, { ...user, ...value });
   window.localStorage.setItem(
     KEY,
     JSON.stringify({

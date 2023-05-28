@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import styled from "styled-components";
-import { getLocalStorage } from "../../utils/storage";
+import { getLocalStorage, setLocalStorage } from "../../utils/storage";
 import { getUser } from "../../api/request";
 import { useNavigate } from "react-router-dom";
 
@@ -17,9 +18,10 @@ const SocialKakao = () => {
     const { token, user: { id } } = getLocalStorage();
     if (token) {
       getUser({ token, id, data: {} }).then((res) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         if (res.mbti) {
+          // @ts-ignore
+          setLocalStorage({ mbti: res.mbti, belief: res.belief });
           navigate("/main");
         } else {
           navigate("/card");

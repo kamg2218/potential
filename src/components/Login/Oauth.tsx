@@ -45,7 +45,7 @@ export default function Oauth() {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const { token: loginToken, user } = login;
-        setLocalStorage({ ...user });
+        setLocalStorage({ mbti: user.mbti, belief: user.belief });
         setTokenStorage({ token: loginToken, user: { id: user.id, name: user.name } });
 
         if (!user.mbti) {

@@ -21,93 +21,104 @@ const PocketDetails = () => {
     mbti: "INTP",
     title:
       "애인이 어쩌구 저쩌구의 행동을 했을 때  어쩌구 저쩌구 모시깽? 이것은 50자다 50자",
-    user: [
+    user: {
+      "id": 11,
+      "name": null,
+      "mbti": "intp",
+      "belief": 2
+    },
+    answer: [
       {
-        id: 1,
-        name: "정진범",
-        mbti: "INTP",
-        belief: 2,
-        content:
-          "대답은 어쩌구 저쩌구 줄글로 위치가 정해져 있는 것이 나중에 구현하기가 편하겠지. 그러니까 대충 왕 길게 이렇게 적으려고 하는데 글자수 최대가 어느정도일까나? 일단 이건 100자 정도 대답은 어쩌구 저쩌구 줄글로 위치가 정해져 있는 것이 나중에 구현하기가 편하겠지. 그러니까 대충 왕 길게 이렇게 적으려고 하는데 글자수 최대가 어느정도일까나? 일단 이건 100자 정도",
+        "id": 1,
+        "content": "이게맞냐",
+        "user": {
+          "id": 1,
+          "name": null,
+          "mbti": "infp",
+          "belief": null
+        },
+        "chat": {
+          "id": 18,
+          "updated_at": "2023-05-28 01:27:09"
+        }
       },
-      {
-        id: 2,
-        name: "정진범",
-        mbti: "INTP",
-        belief: 2,
-        content:
-          "대답은 어쩌구 저쩌구 줄글로 위치가 정해져 있는 것이 나중에 구현하기가 편하겠지. 그러니까 대충 왕 길게 이렇게 적으려고 하는데 글자수 최대가 어느정도일까나? 일단 이건 100자 정도 대답은 어쩌구 저쩌구 줄글로 위치가 정해져 있는 것이 나중에 구현하기가 편하겠지. 그러니까 대충 왕 길게 이렇게 적으려고 하는데 글자수 최대가 어느정도일까나? 일단 이건 100자 정도",
-      },
-      {
-        id: 3,
-        name: "nickname",
-        mbti: "INTP",
-        belief: 2,
-        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
-      },
-      {
-        id: 4,
-        name: "nickname",
-        mbti: "intp",
-        belief: 2,
-        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
-      },
-      {
-        id: 5,
-        name: "nickname",
-        mbti: "intp",
-        belief: 2,
-        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
-      },
-      {
-        id: 6,
-        name: "nickname",
-        mbti: "intp",
-        belief: 2,
-        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
-      },
-      {
-        id: 7,
-        name: "nickname",
-        mbti: "intp",
-        belief: 2,
-        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
-      },
-      {
-        id: 8,
-        name: "nickname",
-        mbti: "intp",
-        belief: 2,
-        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
-      },
-      {
-        id: 9,
-        name: "nickname",
-        mbti: "intp",
-        belief: 2,
-        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
-      },
-      {
-        id: 10,
-        name: "nickname",
-        mbti: "intp",
-        belief: 2,
-        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
-      },
-      {
-        id: 11,
-        name: "nickname",
-        mbti: "intp",
-        belief: 2,
-        content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
-      },
+      // {
+      //   id: 2,
+      //   name: "정진범",
+      //   mbti: "INTP",
+      //   belief: 2,
+      //   content:
+      //     "대답은 어쩌구 저쩌구 줄글로 위치가 정해져 있는 것이 나중에 구현하기가 편하겠지. 그러니까 대충 왕 길게 이렇게 적으려고 하는데 글자수 최대가 어느정도일까나? 일단 이건 100자 정도 대답은 어쩌구 저쩌구 줄글로 위치가 정해져 있는 것이 나중에 구현하기가 편하겠지. 그러니까 대충 왕 길게 이렇게 적으려고 하는데 글자수 최대가 어느정도일까나? 일단 이건 100자 정도",
+      // },
+      // {
+      //   id: 3,
+      //   name: "nickname",
+      //   mbti: "INTP",
+      //   belief: 2,
+      //   content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
+      // },
+      // {
+      //   id: 4,
+      //   name: "nickname",
+      //   mbti: "intp",
+      //   belief: 2,
+      //   content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
+      // },
+      // {
+      //   id: 5,
+      //   name: "nickname",
+      //   mbti: "intp",
+      //   belief: 2,
+      //   content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
+      // },
+      // {
+      //   id: 6,
+      //   name: "nickname",
+      //   mbti: "intp",
+      //   belief: 2,
+      //   content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
+      // },
+      // {
+      //   id: 7,
+      //   name: "nickname",
+      //   mbti: "intp",
+      //   belief: 2,
+      //   content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
+      // },
+      // {
+      //   id: 8,
+      //   name: "nickname",
+      //   mbti: "intp",
+      //   belief: 2,
+      //   content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
+      // },
+      // {
+      //   id: 9,
+      //   name: "nickname",
+      //   mbti: "intp",
+      //   belief: 2,
+      //   content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
+      // },
+      // {
+      //   id: 10,
+      //   name: "nickname",
+      //   mbti: "intp",
+      //   belief: 2,
+      //   content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
+      // },
+      // {
+      //   id: 11,
+      //   name: "nickname",
+      //   mbti: "intp",
+      //   belief: 2,
+      //   content: "sldkfjsldkfjsdklfjsdlkfjsdlfk",
+      // },
     ],
   });
-  const { mbti, title, user } = data;
+  const { mbti, title, answer } = data;
 
-  const handleMessageClick = () => {
-    console.log("click");
-
+  const handleMessageClick = (chatId: number) => {
+    navigate(`/message/${chatId}`);
   };
 
   useEffect(() => {
@@ -131,15 +142,15 @@ const PocketDetails = () => {
       </StyledTitle>
       <div style={{ height: "61vh" }}>
         <PerfectScrollbar>
-          {user.map(({ id, name, mbti, belief, content }) => (
+          {answer.map(({ id, user: { name, mbti, belief }, chat: { id: chatId }, content }) => (
             <Content
               key={id}
               id={id}
-              name={name}
+              name={name || ''}
               mbti={mbti}
-              belief={belief}
+              belief={belief || 1}
               content={content}
-              handleClick={handleMessageClick}
+              handleClick={() => handleMessageClick(chatId)}
             />
           ))}
         </PerfectScrollbar>

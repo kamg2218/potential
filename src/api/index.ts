@@ -5,9 +5,6 @@ const LOCAL_SERVER = 'https://911b-175-192-26-222.ngrok-free.app';
 
 const request = axios.create({
   baseURL: LOCAL_SERVER,
-  headers: {
-    Accept: 'application/json',
-  },
 });
 
 request.defaults.timeout = 2500;
@@ -24,7 +21,6 @@ request.interceptors.request.use(
 
 request.interceptors.response.use(
   (response) => {
-    console.log(response, response.data);
     const res = response.data;
     return res;
   },

@@ -69,7 +69,7 @@ const Pocket = () => {
 
   return (
     <>
-      <PreviousButton className="mt-5 ml-5" />
+      <PreviousButton className="mt-5 ml-5" onClick={() => navigate('/main')} />
       <div className="px-5 flex flex-col items-center">
         <div className="text-white text-3xl text-center">나의 질문</div>
         <NoteWrapper>

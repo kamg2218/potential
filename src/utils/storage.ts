@@ -1,12 +1,12 @@
 const KEY = 'potential';
 
-interface SOTRAGE {
+interface STORAGE {
   id: number;
   name: string;
   mbti: string | null;
   belief: number | null;
-  msg?: string;
-  to?: string;
+  msg: string | null;
+  to: string | null;
 }
 
 const initial = {
@@ -14,6 +14,8 @@ const initial = {
   name: '',
   mbti: null,
   belief: null,
+  msg: null,
+  to: null,
 };
 
 export const getLocalStorage = () => {
@@ -21,18 +23,21 @@ export const getLocalStorage = () => {
 
   if (!storage) return { user: initial, token: '' };
 
-  const { user, token }: { user: SOTRAGE; token: string } = JSON.parse(storage);
+  const { user, token }: { user: STORAGE; token: string } = JSON.parse(storage);
   return { user, token: token };
 };
 
 export const setLocalStorage = (value: {
   mbti: string | null;
   belief: number | null;
-  msg?: string;
-  to?: string;
+  msg?: string | null;
+  to?: string | null;
+  id?: number;
+  name?: string;
 }) => {
   const { user, token } = getLocalStorage();
 
+  console.log(value, user, { ...user, ...value });
   window.localStorage.setItem(
     KEY,
     JSON.stringify({
@@ -44,14 +49,14 @@ export const setLocalStorage = (value: {
 
 export const setTokenStorage = ({
   token,
-  user,
+  user: { id, name },
 }: {
   token: string;
-  user: { id: number; name: string };
+  user: { id: number; name: string | null };
 }) => {
   window.localStorage.setItem(
     KEY,
-    JSON.stringify({ token: token, user: user })
+    JSON.stringify({ token: token, user: { id, name } })
   );
 };
 

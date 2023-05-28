@@ -7,9 +7,15 @@ type MessageProps = {
 interface MessageItemProps {
   userName: string;
   text: string;
-  handleClick: () => void;
+  order?: number;
+  handleClick?: () => void;
 }
-const MessageItem = ({ userName, text, handleClick }: MessageItemProps) => {
+const MessageItem = ({
+  userName,
+  text,
+  order,
+  handleClick,
+}: MessageItemProps) => {
   return (
     <Message user={userName}>
       <div style={{ cursor: "pointer" }} onClick={handleClick}>
@@ -31,7 +37,7 @@ const Message = styled.li<MessageProps>`
     border: 1px solid ${(props) => (props.user === "1" ? "#ffcd29" : "#F3F3F3")};
     border-radius: 0.5rem;
     background-color: ${(props) =>
-      props.user === "1" ? "#ffcd29" : "#F3F3F3"};
+    props.user === "1" ? "#ffcd29" : "#F3F3F3"};
     color: black;
     margin-bottom: 1rem;
   }

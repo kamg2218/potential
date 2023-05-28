@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { postLogin } from "../../api/request";
-import { setTokenStorage } from "../../utils/storage";
+import { setLocalStorage, setTokenStorage } from "../../utils/storage";
 import axios from "axios";
 
 // const REST_API_KEY = "cddf66394b31736dadc6c286c6eb6e5d"; //REST API KEY
@@ -45,6 +45,8 @@ export default function Oauth() {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         const { token: loginToken, user } = login;
+        console.log({ mbti: user.mbti, belief: user.belief });
+        setLocalStorage({ mbti: user.mbti, belief: user.belief });
         setTokenStorage({ token: loginToken, user: { id: user.id, name: user.name } });
 
         if (!user.mbti) {

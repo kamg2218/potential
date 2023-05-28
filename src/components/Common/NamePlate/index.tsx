@@ -22,7 +22,7 @@ const NamePlate = ({
   return (
     <MbtiPlate onClick={handleClick} $useToTalk={useToTalk}>
       <MbtiType width={10} src={url} />
-      <span>{`${mbti} ${useToTalk ? "| 대화하기" : ""} `}</span>
+      <span className="pt-1">{`${mbti} ${useToTalk ? "| 대화하기" : ""} `}</span>
     </MbtiPlate>
   );
 };

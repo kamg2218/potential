@@ -20,6 +20,7 @@ export const getUser = ({
 }) =>
   request({
     headers: { Authorization: `Bearer ${token}` },
+    metho: 'options',
     url: `/users/${id}`,
     ...data,
   });

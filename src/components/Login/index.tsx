@@ -1,21 +1,7 @@
 import SocialKakao from "./SocialKakao";
 import styled from "styled-components";
 import logo from "../../assets/logo.png";
-import { useEffect } from "react";
-import { getLocalStorage } from "../../utils/storage";
-import { useNavigate } from "react-router-dom";
 const Login = () => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    const {
-      token,
-      user: { id },
-    } = getLocalStorage();
-
-    if (token && id) {
-      navigate("/main");
-    }
-  }, []);
   return (
     <div className="w-full h-screen flex flex-col items-center">
       <Wrapper className="flex flex-col items-center">
